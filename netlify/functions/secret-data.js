@@ -1,6 +1,5 @@
 exports.handler = async function(event, context) {
-    const apiKey = process.env.API_KEY; // Securely access your secret key
-    // Perform any backend logic or API calls here using apiKey
+    const MAP_TILE_TOKEN = process.env.MAP_TILE_TOKEN; // Securely access your secret key
   
     return {
       statusCode: 200,
