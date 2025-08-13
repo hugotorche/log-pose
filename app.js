@@ -75,7 +75,14 @@ class ExpeditionMap {
     }
 
     initializeMap() {
-        const key = window.env.MAP_TILE_TOKEN;
+        //const key = window.env.MAP_TILE_TOKEN;
+        const key = fetch('https://navigation-leaflet.netlify.app/.netlify/functions/secret-data')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message);
+            })
+            .catch(error => console.error('Error:', error));
+
         this.map = L.map('map').setView([49.2125578, 16.62662018], 14); //starting position
 
         L.tileLayer(`https://api.maptiler.com/maps/aquarelle/256/{z}/{x}/{y}.png?key=${key}`,{ //style URL
