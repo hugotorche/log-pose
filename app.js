@@ -75,7 +75,7 @@ class ExpeditionMap {
     }
 
     initializeMap() {
-        const key = window.env.MAPTILER_TOKEN;
+        const key = window.env.MAP_TILE_TOKEN;
         this.map = L.map('map').setView([49.2125578, 16.62662018], 14); //starting position
 
         L.tileLayer(`https://api.maptiler.com/maps/aquarelle/256/{z}/{x}/{y}.png?key=${key}`,{ //style URL
