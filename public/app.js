@@ -12,39 +12,63 @@ class ExpeditionMap {
             {
                 id: "bordeaux",
                 name: "Bordeaux, France",
-                coordinates: [44.837789, -0.57918],
+                coordinates: [44.841225, -0.5800364],
                 status: "completed",
                 description: "Journey begins in the port city of Bordeaux, famous for its wine trade routes and maritime history.",
-                arrivalDate: "August 1, 2025",
-                departureDate: "August 5, 2025",
+                startDate: "2016-09-01",
+                endDate: "2020-06-30",
                 highlights: ["Historic Port", "Wine Museums", "Garonne River"]
             },
             {
                 id: "paris", 
                 name: "Paris, France",
-                coordinates: [48.8566, 2.3522],
+                coordinates: [48.8534951, 2.3483915],
                 status: "completed",
                 description: "Passing through the capital of France, a hub of adventure and culture with centuries of history.",
-                arrivalDate: "August 6, 2025", 
-                departureDate: "August 10, 2025",
+                startDate: "2020-07-01",
+                endDate: "2020-12-31",
                 highlights: ["Eiffel Tower", "Louvre Museum", "Seine River Cruise"]
             },
             {
                 id: "copenhagen",
                 name: "Copenhagen, Denmark", 
-                coordinates: [55.6761, 12.5683],
+                coordinates: [55.6867243, 12.5700724],
+                status: "completed",
+                description: "Currently exploring the maritime capital of Denmark, known for its Viking heritage and modern design.",
+                startDate: "2021-09-01",
+                endDate: "2021-12-31",
+                highlights: ["Nyhavn Harbor", "Tivoli Gardens", "Little Mermaid Statue"]
+            },
+            {
+                id: "geneva",
+                name: "Geneva, Switzerland", 
+                coordinates: [46.2017559, 6.1466014],
                 status: "current",
                 description: "Currently exploring the maritime capital of Denmark, known for its Viking heritage and modern design.",
-                arrivalDate: "August 11, 2025",
-                departureDate: "TBD",
+                startDate: "2022-01-01",
+                endDate: "TBD",
+                highlights: ["Nyhavn Harbor", "Tivoli Gardens", "Little Mermaid Statue"]
+            },
+            {
+                id: "tokyo",
+                name: "Tokyo, Japan", 
+                coordinates: [35.6768601, 139.7638947],
+                status: "completed",
+                description: "Currently exploring the maritime capital of Denmark, known for its Viking heritage and modern design.",
+                startDate: "2024-04-01",
+                endDate: "2024-08-31",
                 highlights: ["Nyhavn Harbor", "Tivoli Gardens", "Little Mermaid Statue"]
             }
         ];
 
         this.route = [
-            [44.837789, -0.57918],
-            [48.8566, 2.3522], 
-            [55.6761, 12.5683]
+            [44.841225, -0.5800364],
+            [48.8534951, 2.3483915], 
+            [55.6867243, 12.5700724],
+            [46.2017559, 6.1466014],
+            [35.6768601, 139.7638947]
+
+            
         ];
 
         this.legendItems = [
@@ -75,7 +99,9 @@ class ExpeditionMap {
     }
 
     initializeMap() {
-        this.map = L.map('map').setView([49.2125578, 16.62662018], 14); //starting position
+        this.map = L.map('map', {attributionControl: false}).setView([49.2125578, 16.62662018], 14); //starting position
+        var myAttrControl = L.control.attribution().addTo(this.map);
+        myAttrControl.setPrefix('<a href="https://leafletjs.com/">Leaflet</a>');
 
         L.tileLayer('/tiles/{z}/{x}/{y}.png', {
             tileSize: 512,
@@ -95,18 +121,18 @@ class ExpeditionMap {
     }
 
     createCustomIcon(location) {
-        const iconSize = location.status === 'current' ? 40 : 30;
-        const iconColor = location.status === 'current' ? '#FFD700' : 
-                         location.status === 'completed' ? '#32CD32' : '#87CEEB';
+        const iconSize = location.status === 'current' ? 18 : 18;
+        const iconColor = location.status === 'current' ? '#87CEEB' : 
+                         location.status === 'completed' ? '#000080' : '#87CEEB';
         
         const pulseHTML = location.status === 'current' ? 
             `<div class="marker-pulse" style="
                 position: absolute;
-                top: 50%;
-                left: 50%;
+                top: -60%;
+                left: -60%;
                 transform: translate(-50%, -50%);
-                width: 60px;
-                height: 60px;
+                width: 45px;
+                height: 45px;
                 background: rgba(255, 215, 0, 0.3);
                 border-radius: 50%;
                 animation: pulseShadow 2s infinite ease-in-out;
@@ -124,7 +150,7 @@ class ExpeditionMap {
                         width: ${iconSize}px;
                         height: ${iconSize}px;
                         background: ${iconColor};
-                        border: 3px solid #8b4513;
+                        border: 3px solid #F5F5F5;
                         border-radius: 50%;
                         display: flex;
                         align-items: center;
@@ -133,11 +159,11 @@ class ExpeditionMap {
                         color: #1a2332;
                         font-weight: bold;
                         box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-                    ">⚓</div>
+                    "></div>
                 </div>
             `,
             iconSize: [iconSize, iconSize],
-            iconAnchor: [iconSize/2, iconSize/2],
+            iconAnchor: [iconSize/1.18, iconSize/1.18],
             popupAnchor: [0, -iconSize/2 - 5]
         });
     }
@@ -232,7 +258,7 @@ class ExpeditionMap {
         const glowRoute = L.polyline(this.route, {
             color: '#FFD700',
             weight: 8,
-            opacity: 0.3,
+            opacity: 0.2,
             lineCap: 'round'
         }).addTo(this.routeLayer);
 
@@ -253,7 +279,7 @@ class ExpeditionMap {
             html: '➤',
             className: 'route-arrow',
             iconSize: [20, 20],
-            iconAnchor: [10, 10]
+            iconAnchor: [7, 7]
         });
 
         const arrowMarker = L.marker(midLatLng, { icon: arrowIcon }).addTo(this.routeLayer);
@@ -422,8 +448,8 @@ class ExpeditionMap {
     addRouteSegment(fromCoords, toCoords, options = {}) {
         const segmentLine = L.polyline([fromCoords, toCoords], {
             color: options.color || '#FFD700',
-            weight: options.weight || 4,
-            opacity: options.opacity || 0.8,
+            weight: options.weight || 3,
+            opacity: options.opacity || 0.4,
             dashArray: options.dashArray || '10, 5'
         });
         
