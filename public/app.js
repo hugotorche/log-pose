@@ -1,171 +1,116 @@
-// Expedition Journey Map Application
 class ExpeditionMap {
     constructor() {
-        this.map = null;
-        this.routeLayer = null;
-        this.markersLayer = null;
-        this.currentLocationMarker = null;
-        this.animatedRoute = null;
-        
-        // Application data
-        this.locations = [
-            {
-                id: "bordeaux",
-                name: "Bordeaux, France",
-                coordinates: [44.841225, -0.5800364],
-                status: "completed",
-                description: "Journey begins in the port city of Bordeaux, famous for its wine trade routes and maritime history.",
-                startDate: "2016-09-01",
-                endDate: "2020-06-30",
-                highlights: ["Historic Port", "Wine Museums", "Garonne River"]
-            },
-            {
-                id: "paris", 
-                name: "Paris, France",
-                coordinates: [48.8534951, 2.3483915],
-                status: "completed",
-                description: "Passing through the capital of France, a hub of adventure and culture with centuries of history.",
-                startDate: "2020-07-01",
-                endDate: "2020-12-31",
-                highlights: ["Eiffel Tower", "Louvre Museum", "Seine River Cruise"]
-            },
-            {
-                id: "copenhagen",
-                name: "Copenhagen, Denmark", 
-                coordinates: [55.6867243, 12.5700724],
-                status: "completed",
-                description: "Currently exploring the maritime capital of Denmark, known for its Viking heritage and modern design.",
-                startDate: "2021-09-01",
-                endDate: "2021-12-31",
-                highlights: ["Nyhavn Harbor", "Tivoli Gardens", "Little Mermaid Statue"]
-            },
-            {
-                id: "geneva",
-                name: "Geneva, Switzerland", 
-                coordinates: [46.2017559, 6.1466014],
-                status: "current",
-                description: "Currently exploring the maritime capital of Denmark, known for its Viking heritage and modern design.",
-                startDate: "2022-01-01",
-                endDate: "TBD",
-                highlights: ["Nyhavn Harbor", "Tivoli Gardens", "Little Mermaid Statue"]
-            },
-            {
-                id: "tokyo",
-                name: "Tokyo, Japan", 
-                coordinates: [35.6768601, 139.7638947],
-                status: "completed",
-                description: "Currently exploring the maritime capital of Denmark, known for its Viking heritage and modern design.",
-                startDate: "2024-04-01",
-                endDate: "2024-08-31",
-                highlights: ["Nyhavn Harbor", "Tivoli Gardens", "Little Mermaid Statue"]
-            }
-        ];
-
-        this.route = [
-            [44.841225, -0.5800364],
-            [48.8534951, 2.3483915], 
-            [55.6867243, 12.5700724],
-            [46.2017559, 6.1466014],
-            [35.6768601, 139.7638947]
-
-            
-        ];
-
-        this.legendItems = [
-            {icon: "⚓", label: "Journey Waypoint", color: "#FFD700"},
-            {icon: "🏛️", label: "Museum/Culture", color: "#87CEEB"},
-            {icon: "🏨", label: "Accommodation", color: "#DDA0DD"},
-            {icon: "🍽️", label: "Dining", color: "#F0E68C"},
-            {icon: "🌊", label: "Natural Feature", color: "#40E0D0"}
-        ];
-        
-        this.markers = [];
-        this.init();
+      this.map = null;
+      this.routeLayer = null;
+      this.markersLayer = null;
+      this.currentLocationMarker = null;
+      this.locations = [
+        {
+            id: "bordeaux",
+            name: "Bordeaux, France",
+            coordinates: [44.841225, -0.5800364],
+            status: "completed",
+            description: "Journey begins in the port city of Bordeaux, famous for its wine trade routes and maritime history.",
+            startDate: "2016-09-01",
+            endDate: "2020-06-30",
+            highlights: ["Historic Port", "Wine Museums", "Garonne River"]
+        },
+        {
+            id: "paris", 
+            name: "Paris, France",
+            coordinates: [48.8534951, 2.3483915],
+            status: "completed",
+            description: "Passing through the capital of France, a hub of adventure and culture with centuries of history.",
+            startDate: "2020-07-01",
+            endDate: "2020-12-31",
+            highlights: ["Eiffel Tower", "Louvre Museum", "Seine River Cruise"]
+        },
+        {
+            id: "copenhagen",
+            name: "Copenhagen, Denmark", 
+            coordinates: [55.6867243, 12.5700724],
+            status: "completed",
+            description: "Currently exploring the maritime capital of Denmark, known for its Viking heritage and modern design.",
+            startDate: "2021-09-01",
+            endDate: "2021-12-31",
+            highlights: ["Nyhavn Harbor", "Tivoli Gardens", "Little Mermaid Statue"]
+        },
+        {
+            id: "geneva",
+            name: "Geneva, Switzerland", 
+            coordinates: [46.2017559, 6.1466014],
+            status: "current",
+            description: "Currently exploring the maritime capital of Denmark, known for its Viking heritage and modern design.",
+            startDate: "2022-01-01",
+            endDate: "TBD",
+            highlights: ["Nyhavn Harbor", "Tivoli Gardens", "Little Mermaid Statue"]
+        },
+        {
+            id: "tokyo",
+            name: "Tokyo, Japan", 
+            coordinates: [35.6768601, 139.7638947],
+            status: "completed",
+            description: "Currently exploring the maritime capital of Denmark, known for its Viking heritage and modern design.",
+            startDate: "2024-04-01",
+            endDate: "2024-08-31",
+            highlights: ["Nyhavn Harbor", "Tivoli Gardens", "Little Mermaid Statue"]
+        }
+      ];
+      this.routes = [
+        { from: "bordeaux", to: "paris", type: "unidirectional" },
+        { from: "paris", to: "copenhagen", type: "unidirectional" },
+        { from: "copenhagen", to: "geneva", type: "unidirectional" },
+        { from: "geneva", to: "tokyo", type: "bidirectional" }
+      ];
+      this.legendItems = [
+        {icon: "🌟", label: "Saved in Favorite", color: "#FFD700"},
+        {icon: "👷", label: "Workplace", color: "#40E0D0"},
+        {icon: "📖", label: "Book needed", color: "#87CEEB"},
+        {icon: "👘", label: "Fashion Spot", color: "#F0E68C"},
+        {icon: "🏄", label: "Sport Hightlight", color: "#DDA0DD"}
+      ];
+      this.markers = [];
+      this.init();
     }
-
+  
     init() {
-        this.initializeMap();
-        this.createLayers();
-        this.addMarkers();
-        this.createAnimatedRoute();
-        this.populateLegend();
-        this.addCompassRose();
-        this.startAnimations();
-        
-        // Fit map to show all locations
-        setTimeout(() => {
-            this.resetMapView();
-        }, 1000);
-    }
+      this.initializeMap();
+      this.createLayers();
+      this.addMarkers();
+      this.addIcons();
+      this.addCurvedRoutesAndArrows();
+      this.populateLegend();
+      this.addCompassRose();
+      this.startAnimations();
 
+      // Fit map to show all locations
+      setTimeout(() => {
+        this.resetMapView();
+      }, 1000);
+    }
+  
     initializeMap() {
-        this.map = L.map('map', {attributionControl: false}).setView([49.2125578, 16.62662018], 14); //starting position
-        var myAttrControl = L.control.attribution().addTo(this.map);
-        myAttrControl.setPrefix('<a href="https://leafletjs.com/">Leaflet</a>');
+      this.map = L.map('map', { attributionControl: false }).setView([48, 17], 3.2);
+      L.tileLayer('/tiles/{z}/{x}/{y}.png', {
+        tileSize: 512,
+        zoomOffset: -1,
+        minZoom: 1,
+        attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
+        crossOrigin: true
+    }).addTo(this.map);
 
-        L.tileLayer('/tiles/{z}/{x}/{y}.png', {
-            tileSize: 512,
-            zoomOffset: -1,
-            minZoom: 1,
-            attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
-            crossOrigin: true
-        }).addTo(this.map);
-
-        // Add custom styling
-        this.map.getContainer().style.filter = 'sepia(10%) saturate(0.9) hue-rotate(200deg) brightness(0.8) contrast(1.1)';
+    this.map.getContainer().style.filter = 'sepia(15%) brightness(0.75)';
+    this.map.createPane('markerPane');
+    this.map.getPane('markerPane').style.zIndex = 650;
+    this.map.createPane('arrowPane');
+    this.map.getPane('arrowPane').style.zIndex = 600;
+    this.map.createPane('iconPane');
+    this.map.getPane('iconPane').style.zIndex = 550;
     }
-
+  
     createLayers() {
-        this.routeLayer = L.layerGroup().addTo(this.map);
-        this.markersLayer = L.layerGroup().addTo(this.map);
-    }
-
-    createCustomIcon(location) {
-        const iconSize = location.status === 'current' ? 18 : 18;
-        const iconColor = location.status === 'current' ? '#87CEEB' : 
-                         location.status === 'completed' ? '#000080' : '#87CEEB';
-        
-        const pulseHTML = location.status === 'current' ? 
-            `<div class="marker-pulse" style="
-                position: absolute;
-                top: -60%;
-                left: -60%;
-                transform: translate(-50%, -50%);
-                width: 45px;
-                height: 45px;
-                background: rgba(255, 215, 0, 0.3);
-                border-radius: 50%;
-                animation: pulseShadow 2s infinite ease-in-out;
-                z-index: 1;
-            "></div>` : '';
-        
-        return L.divIcon({
-            className: `expedition-marker ${location.status}`,
-            html: `
-                <div class="marker-container" style="position: relative; width: ${iconSize}px; height: ${iconSize}px;">
-                    ${pulseHTML}
-                    <div class="marker-icon" style="
-                        position: relative;
-                        z-index: 10;
-                        width: ${iconSize}px;
-                        height: ${iconSize}px;
-                        background: ${iconColor};
-                        border: 3px solid #F5F5F5;
-                        border-radius: 50%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 18px;
-                        color: #1a2332;
-                        font-weight: bold;
-                        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-                    "></div>
-                </div>
-            `,
-            iconSize: [iconSize, iconSize],
-            iconAnchor: [iconSize/1.18, iconSize/1.18],
-            popupAnchor: [0, -iconSize/2 - 5]
-        });
+      this.routeLayer = L.layerGroup().addTo(this.map);
+      this.markersLayer = L.layerGroup().addTo(this.map);
     }
 
     createPopupContent(location) {
@@ -194,105 +139,184 @@ class ExpeditionMap {
             </div>
         `;
     }
-
+  
     addMarkers() {
-        this.locations.forEach((location, index) => {
-            const marker = L.marker(location.coordinates, {
-                icon: this.createCustomIcon(location),
-                riseOnHover: true
-            });
+      for (const loc of this.locations) {
+        const color = loc.status === "current" ? "#AB8476" : "#96705B";
+        const pulseHTML = loc.status === 'current' ? 
+            `<div class="marker-pulse" style="
+                position: absolute;
+                top: -12%;
+                left: -12%;
+                transform: translate(-50%, -50%);
+                width: 25px;
+                height: 25px;
+                background: rgba(98, 71, 171, 0.3);
+                border-radius: 50%;
+                animation: pulseShadow 2s infinite ease-in-out;
+                z-index: 1;
+            "></div>` : '';
 
-            marker.bindPopup(this.createPopupContent(location), {
-                maxWidth: 320,
-                className: 'expedition-popup-wrapper'
-            });
-
-            marker.addTo(this.markersLayer);
-            this.markers.push(marker);
-
-            // Store reference for current location
-            if (location.status === 'current') {
-                this.currentLocationMarker = marker;
-            }
-
-            // Add click event for enhanced interaction
-            marker.on('click', (e) => {
-                this.onMarkerClick(location, e);
-            });
-
-            console.log(`Added marker for ${location.name} at [${location.coordinates[0]}, ${location.coordinates[1]}]`);
-        });
-    }
-
-    createAnimatedRoute() {
-        // Create main route polyline
-        const mainRoute = L.polyline(this.route, {
-            color: '#FFD700',
-            weight: 4,
-            opacity: 0.9,
-            dashArray: '10, 5',
-            lineCap: 'round',
-            lineJoin: 'round'
-        }).addTo(this.routeLayer);
-
-        // Create individual segments with animation delay
-        this.route.forEach((point, index) => {
-            if (index > 0) {
-                const segment = [this.route[index - 1], this.route[index]];
-                
-                setTimeout(() => {
-                    const segmentLine = L.polyline(segment, {
-                        color: '#32CD32',
-                        weight: 6,
-                        opacity: 0.7,
-                        dashArray: '15, 10'
-                    }).addTo(this.routeLayer);
-
-                    // Add direction arrows using simple CSS-based approach
-                    this.addDirectionArrows(segment);
-                }, index * 1500);
-            }
-        });
-
-        // Add a glowing effect to the main route
-        const glowRoute = L.polyline(this.route, {
-            color: '#FFD700',
-            weight: 8,
-            opacity: 0.2,
-            lineCap: 'round'
-        }).addTo(this.routeLayer);
-
-        console.log('Route created with', this.route.length, 'waypoints');
-    }
-
-    addDirectionArrows(segment) {
-        // Calculate midpoint and bearing for arrow placement
-        const startLatLng = L.latLng(segment[0]);
-        const endLatLng = L.latLng(segment[1]);
-        const midLatLng = L.latLng(
-            (startLatLng.lat + endLatLng.lat) / 2,
-            (startLatLng.lng + endLatLng.lng) / 2
-        );
-
-        // Create arrow marker
-        const arrowIcon = L.divIcon({
-            html: '➤',
-            className: 'route-arrow',
+        const marker = L.marker(loc.coordinates, {
+          icon: L.divIcon({
+            className: "expedition-marker",
+            html: `
+                <div style="position: relative; width: 20px; height: 20px;">
+                    ${pulseHTML}
+                    <div style="
+                        width: 20px;
+                        height: 20px;
+                        background: ${color};
+                        border: 4px solid #fff;
+                        border-radius: 50%;
+                        box-shadow:0 0 12px #1a1423c0;
+                        cursor: pointer;
+                    "></div>
+                </div>
+            `,
             iconSize: [20, 20],
-            iconAnchor: [7, 7]
+            iconAnchor: [10, 10]
+          }), pane: 'markerPane'
         });
 
-        const arrowMarker = L.marker(midLatLng, { icon: arrowIcon }).addTo(this.routeLayer);
-        
-        // Calculate rotation angle
-        const bearing = startLatLng.bearingTo(endLatLng);
-        const arrowElement = arrowMarker.getElement();
-        if (arrowElement) {
-            arrowElement.style.transform += ` rotate(${bearing}deg)`;
-            arrowElement.style.color = '#FFD700';
-            arrowElement.style.fontSize = '16px';
-            arrowElement.style.textShadow = '0 0 4px rgba(0,0,0,0.8)';
+        marker.bindPopup(this.createPopupContent(loc), {
+            maxWidth: 320,
+            className: 'expedition-popup-wrapper'
+        });
+        marker.addTo(this.markersLayer);
+        this.markers.push(marker);
+
+        // Store reference for current location
+        if (location.status === 'current') {
+            this.currentLocationMarker = marker;
         }
+
+        // Add click event for enhanced interaction
+        marker.on('click', (e) => {
+            this.onMarkerClick(location, e);
+        });
+      }
+    }
+
+    addIcons() {
+      const starCoords = [
+        [55.6815651,12.5248235],     // CBS Solbjerg Pl. 3
+        [46.1673357,6.1050636],    // L'Occitane (Suisse) SA
+        [48.8708433,2.3215617]    // Chanel Madeleine
+      ];
+
+      starCoords.forEach(([lat, lng]) => {
+          const starMarker = L.marker([lat,lng], {
+            icon: L.divIcon({
+              className: 'star-map-icon',
+              html: '<span style="font-size:1.2rem;line-height:1">👷</span>',
+              iconSize: [16, 16],
+              iconAnchor: [8, 8]
+            }),
+            pane: 'iconPane'
+          }).addTo(this.map);
+      })
+    }
+
+    addCurvedRoutesAndArrows() {
+      // Plain arrow SVG (16x16, #1A1423)
+      const plainArrowSvg = `
+        <svg width="14" height="14" viewBox="0 0 14 14">
+          <polygon points="3,2 13,8 3,14 7,8" fill="#1A1423"/>
+        </svg>`;
+  
+      for (const route of this.routes) {
+        const start = this.locations.find(l => l.id === route.from).coordinates;
+        const end = this.locations.find(l => l.id === route.to).coordinates;
+
+        let curveFactor = 0.19; // default
+        if ((route.from === "paris" && route.to === "copenhagen") || 
+            (route.from === "copenhagen" && route.to === "paris")) {
+            curveFactor = 0.30; // more curve for Paris-Copenhagen
+        } else if ((route.from === "copenhagen" && route.to === "geneva") || 
+                  (route.from === "geneva" && route.to === "copenhagen")) {
+            curveFactor = 0.30; // more curve for Copenhagen-Geneva
+        }
+        const ctrl = this.computeCurveControlPoint(start, end, curveFactor);
+        const curvePts = this.bezierPoints(start, ctrl, end, 40);
+  
+        // Route line: #1A1423
+        L.polyline(curvePts, {
+          color: "#1A1423",
+          weight: 2.5,
+          dashArray: "2 10",
+          opacity: 0.50
+        }).addTo(this.routeLayer);
+  
+        if (route.type === "bidirectional") {
+          // Arrow towards Tokyo (forward): t = 0.30
+          this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.30);
+          // Arrow towards Geneva (reverse): t = 0.30 on reversed curve (= 0.70 on forward)
+          this.drawArrowOnCurve(curvePts.slice().reverse(), plainArrowSvg, 0.30);
+        } else if (route.from === "bordeaux" && route.to === "paris") {
+          this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.50); // exactly at midpoint
+        } else if (route.from === "paris" && route.to === "copenhagen") {
+          this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.62);
+        } else if (route.from === "copenhagen" && route.to === "geneva") {
+            this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.52);
+        } else {
+          this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.45);
+        }
+      }
+    }
+  
+    computeCurveControlPoint(start, end, factor = 0.15) {
+      const lat1 = start[0], lng1 = start[1];
+      const lat2 = end[0], lng2 = end[1];
+      const midLat = (lat1 + lat2) / 2;
+      const midLng = (lng1 + lng2) / 2;
+      const dx = lat2 - lat1, dy = lng2 - lng1;
+      const norm = Math.sqrt(dx * dx + dy * dy) || 1;
+      const perpLat = -dy / norm, perpLng = dx / norm;
+      const offset = factor * norm;
+      return [midLat + perpLat * offset, midLng + perpLng * offset];
+    }
+  
+    bezierPoints(from, control, to, segments = 40) {
+      const pts = [];
+      for (let i = 0; i <= segments; i++) {
+        const t = i / segments;
+        const lat = (1 - t) * (1 - t) * from[0] + 2 * (1 - t) * t * control[0] + t * t * to[0];
+        const lng = (1 - t) * (1 - t) * from[1] + 2 * (1 - t) * t * control[1] + t * t * to[1];
+        pts.push([lat, lng]);
+      }
+      return pts;
+    }
+  
+    drawArrowOnCurve(curvePoints, arrowSvg, t = 0.45) {
+      const points = curvePoints.map(ll => this.map.latLngToLayerPoint(L.latLng(ll)));
+      let totalDist = 0, dists = [0];
+      for (let i = 1; i < points.length; i++) {
+        totalDist += points[i].distanceTo(points[i - 1]);
+        dists.push(totalDist);
+      }
+      const targetDist = t * totalDist;
+      let idx = 0;
+      for (; idx < dists.length - 1; idx++) {
+        if (dists[idx + 1] >= targetDist) break;
+      }
+      if (idx >= points.length - 1) idx = points.length - 2;
+      const segLen = dists[idx + 1] - dists[idx];
+      const segFraction = (targetDist - dists[idx]) / segLen;
+      const midPx = points[idx].add(points[idx + 1].subtract(points[idx]).multiplyBy(segFraction));
+      const beforePx = points[Math.max(idx - 1, 0)];
+      const afterPx = points[Math.min(idx + 2, points.length - 1)];
+      const dx = afterPx.x - beforePx.x, dy = afterPx.y - beforePx.y;
+      const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+      const latlng = this.map.layerPointToLatLng(midPx);
+  
+      const icon = L.divIcon({
+        className: 'route-arrow-icon',
+        html: `<div style="transform: rotate(${angle}deg); width:16px; height:16px; display:flex; align-items:center; justify-content:center;">${arrowSvg}</div>`,
+        iconSize: [16, 16],
+        iconAnchor: [8, 8]
+      });
+      L.marker(latlng, { icon, interactive: false, keyboard: false, pane: 'arrowPane' }).addTo(this.routeLayer);
     }
 
     populateLegend() {
@@ -318,7 +342,7 @@ class ExpeditionMap {
     addCompassRose() {
         const compassDiv = document.createElement('div');
         compassDiv.className = 'compass-rose';
-        compassDiv.innerHTML = '🧭';
+        compassDiv.innerHTML = '<span class="compass-emoji">🧭</span>';
         compassDiv.title = 'Reset View (Press R)';
         compassDiv.onclick = () => this.resetMapView();
         
@@ -429,65 +453,17 @@ class ExpeditionMap {
             alert(`🗞️ Detailed expedition log for ${location.name} will be available soon!\n\nThis feature will include:\n• Photo gallery\n• Detailed journey notes\n• Interactive timeline\n• Local discoveries\n\nCurrent Status: ${location.status.toUpperCase()}`);
         }
     }
-
-    // Public method to add new locations (for easy extensibility)
-    addLocation(locationData) {
-        this.locations.push(locationData);
-        const marker = L.marker(locationData.coordinates, {
-            icon: this.createCustomIcon(locationData)
-        });
-        
-        marker.bindPopup(this.createPopupContent(locationData));
-        marker.addTo(this.markersLayer);
-        this.markers.push(marker);
-        
-        return marker;
-    }
-
-    // Public method to add new route segment
-    addRouteSegment(fromCoords, toCoords, options = {}) {
-        const segmentLine = L.polyline([fromCoords, toCoords], {
-            color: options.color || '#FFD700',
-            weight: options.weight || 3,
-            opacity: options.opacity || 0.4,
-            dashArray: options.dashArray || '10, 5'
-        });
-        
-        segmentLine.addTo(this.routeLayer);
-        return segmentLine;
-    }
-}
-
-// Add Leaflet bearing calculation method
-L.LatLng.prototype.bearingTo = function(other) {
-    const lat1 = this.lat * Math.PI / 180;
-    const lat2 = other.lat * Math.PI / 180;
-    const deltaLng = (other.lng - this.lng) * Math.PI / 180;
-    
-    const x = Math.sin(deltaLng) * Math.cos(lat2);
-    const y = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(deltaLng);
-    
-    return (Math.atan2(x, y) * 180 / Math.PI + 360) % 360;
-};
-
-// Initialize the application when the page loads
-let expeditionMap;
-
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('🌊 Initializing Expedition Map...');
-    
-    // Small delay to ensure all DOM elements are ready
-    setTimeout(() => {
-        expeditionMap = new ExpeditionMap();
-        console.log('🗺️ Expedition Map loaded successfully!');
-        console.log('⚓ Ready to explore the journey from Bordeaux to Copenhagen');
-    }, 100);
-});
+  }
+  
+// Initialize map on page load
+document.addEventListener("DOMContentLoaded", () => {
+    window.expeditionMap = new ExpeditionMap();
+    });
 
 // Add keyboard shortcuts for better UX
 document.addEventListener('keydown', (e) => {
     if (!expeditionMap) return;
-    
+
     switch(e.key.toLowerCase()) {
         case 'r':
             expeditionMap.resetMapView();
