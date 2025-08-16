@@ -10,10 +10,10 @@ class ExpeditionMap {
             name: "Bordeaux, France",
             coordinates: [44.841225, -0.5800364],
             status: "completed",
-            description: "Journey begins in the port city of Bordeaux, famous for its wine trade routes and maritime history.",
+            description: "Journey begins in the port city of Bordeaux, famous for its wine trade routes and maritime history. Here I was born and made all my education until the last years of graduate school.",
             startDate: "2016-09-01",
             endDate: "2020-06-30",
-            highlights: ["Historic Port", "Wine Museums", "Garonne River"]
+            highlights: ["🌟 Place Gambetta", "🏄 15 ranking at Tennis", "📖 DCG Diploma obtained"]
         },
         {
             id: "paris", 
@@ -50,10 +50,10 @@ class ExpeditionMap {
             name: "Tokyo, Japan", 
             coordinates: [35.6768601, 139.7638947],
             status: "completed",
-            description: "Currently exploring the maritime capital of Denmark, known for its Viking heritage and modern design.",
-            startDate: "2024-04-01",
+            description: "Spent 6 months on this island called Japan. Most of it was filled with a Short Term Assignment as a Data Expert for L'Occitane Group. I took the time to learn Japanese and to prepare for the JLPT N4 exam. The trees are so beautiful there, I wish I will see them again.",
+            startDate: "2024-03-01",
             endDate: "2024-08-31",
-            highlights: ["Nyhavn Harbor", "Tivoli Gardens", "Little Mermaid Statue"]
+            highlights: [ "🌟 Likurakumano Shrine", "👷 Chiyoda-ku (千代田区)", "📖 Passed JLPT N4", "👘 Shimo-Kitazawa (下北沢)", "🏃 Workout around Tokyo Tower (東京タワー)"]
         }
       ];
       this.routes = [
@@ -124,11 +124,11 @@ class ExpeditionMap {
                 <div class="popup-status ${statusClass}">${statusText}</div>
                 <p class="popup-description">${location.description}</p>
                 <div class="popup-dates">
-                    <strong>Arrival:</strong> ${location.arrivalDate}<br>
-                    <strong>Departure:</strong> ${location.departureDate}
+                    <strong>Arrival:</strong> ${location.startDate}<br>
+                    <strong>Departure:</strong> ${location.endDate}
                 </div>
                 <div class="popup-highlights">
-                    <h4>🌟 Highlights</h4>
+                    <h4>📜 Navigation Details</h4>
                     <ul>
                         ${location.highlights.map(highlight => `<li>${highlight}</li>`).join('')}
                     </ul>
