@@ -33,7 +33,7 @@ class ExpeditionMap {
             description: "Currently exploring the maritime capital of Denmark, known for its Viking heritage and modern design.",
             startDate: "2021-09-01",
             endDate: "2021-12-31",
-            highlights: ["Nyhavn Harbor", "Tivoli Gardens", "Little Mermaid Statue"]
+            highlights: [ "🌟 Frederiksberg & Nørrebro", "🌟 Tivoli Gardens", "👷 CBS Solbjerg Plads", "📖 S grade on all exams", "🏃 Copenhagen Half Marathon 2021"]
         },
         {
             id: "geneva",
@@ -216,6 +216,47 @@ class ExpeditionMap {
             pane: 'iconPane'
           }).addTo(this.map);
       })
+
+      const cityPopCoords = [
+          [46.94809, 7.44744],         // Bern, Switzerland
+          [47.37445, 8.54104],         // Zurich, Switzerland
+          [46.00368, 8.95105],         // Lugano, Switzerland
+          [45.91600, 6.13300],         // Annecy, France
+          [45.76342, 4.83428],         // Lyon, France
+          [59.91333, 10.73897],        // Oslo, Norway
+          [60.391263, 5.322054],       // Bergen, Norway
+          [55.64152, 12.08035],        // Roskilde, Denmark
+          [59.334591, 18.063240],      // Stockholm, Sweden
+          [60.192059, 24.945831],      // Helsinki, Finland
+          [59.436962, 24.753574],      // Tallinn, Estonia
+          [35.011665, 135.768326],     // Kyoto, Japan
+          [34.672314, 135.484802],     // Osaka, Japan
+          [35.183334, 136.899994],     // Nagoya, Japan
+          [50.073658, 14.418540],       // Prague
+          [37.5665, 126.9780],   // Seoul
+          [41.3874, 2.1686],      // Barcelona, Spain
+          [51.5072, -0.1276],     // London, UK
+          [53.3498, -6.2603],     // Dublin, Ireland
+          [41.9028, 12.4964]      // Rome (Roma), Italy
+      ];
+
+      cityPopCoords.forEach(([lat, lng]) => {
+        const triangleSvg = `
+          <svg width="8" height="8" viewBox="0 0 8 8">
+            <polygon points="4,1 7,7 1,7" fill="#a38023"/>
+          </svg>
+        `;
+      
+        const cityPopMarker = L.marker([lat, lng], {
+          icon: L.divIcon({
+            className: 'star-map-icon',
+            html: triangleSvg,
+            iconSize: [8, 8],
+            iconAnchor: [4, 7] // anchor at triangle base
+          }),
+          pane: 'iconPane'
+        }).addTo(this.map);
+      });
     }
 
     addCurvedRoutesAndArrows() {
