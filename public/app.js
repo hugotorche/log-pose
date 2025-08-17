@@ -62,13 +62,32 @@ class ExpeditionMap {
         { from: "copenhagen", to: "geneva", type: "unidirectional" },
         { from: "geneva", to: "tokyo", type: "bidirectional" }
       ];
+
       this.legendItems = [
-        {icon: "🌟", label: "Saved in Favorite", color: "#FFD700"},
-        {icon: "👷", label: "Workplace", color: "#40E0D0"},
-        {icon: "📖", label: "Book needed", color: "#87CEEB"},
-        {icon: "👘", label: "Fashion Spot", color: "#F0E68C"},
-        {icon: "🏄", label: "Sport Hightlight", color: "#DDA0DD"}
-      ];
+        {
+          icon: `
+            <svg width="20" height="20" viewBox="0 0 20 20" style="display:inline;vertical-align:middle">
+              <circle cx="10" cy="10" r="8" fill="#96705B" stroke="#fff" stroke-width="4"/>
+            </svg>`,
+          label: "Location Lived in"
+        },
+        {
+          icon: `
+<svg width="27" height="18" viewBox="0 0 27 18" style="display:inline;vertical-align:middle">
+  <line x1="2" y1="9" x2="15" y2="9" stroke="#a7a7a7" stroke-width="2" stroke-dasharray="5 3 5 2"/>
+  <polygon points="17,2 25,9 17,14 21,9" fill="#1A1423"/>
+</svg>`,
+          label: "Route Direction"
+        },
+        {
+          icon: `<span style="font-size:8px;">🟣</span>`,
+          label: "City Explored"
+        },
+        {
+          icon: "🧭",
+          label: "Click to Reset view"
+        }
+      ];      
       this.markers = [];
       this.init();
     }
@@ -143,7 +162,7 @@ class ExpeditionMap {
     addMarkers() {
       for (const loc of this.locations) {
         const color = loc.status === "current" ? "#AB8476" : "#96705B";
-        const pulseHTML = loc.status === 'current' ? 
+        const pulseHTML = loc.status === 'current' ?
             `<div class="marker-pulse" style="
                 position: absolute;
                 top: -12%;
@@ -250,9 +269,9 @@ class ExpeditionMap {
         const cityPopMarker = L.marker([lat, lng], {
           icon: L.divIcon({
             className: 'star-map-icon',
-            html: triangleSvg,
-            iconSize: [8, 8],
-            iconAnchor: [4, 7] // anchor at triangle base
+            html: `<span style="font-size:5px;">🟣</span>`,
+            iconSize: [2, 2],
+            iconAnchor: [2, 2] // anchor at triangle base
           }),
           pane: 'iconPane'
         }).addTo(this.map);
