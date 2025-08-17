@@ -1148,31 +1148,29 @@
   }
   
   /* Responsive Design */
-  /*@media (max-width: 1024px) {
+  @media (max-width: 1024px) {
       .expedition-container {
           grid-template-areas: 
               "header"
               "map"
-              "info"
-              "legend";
+              "legend"
+              "info";
           grid-template-columns: 1fr;
           grid-template-rows: auto 1fr auto auto;
       }
       
-      .expedition-legend, .journey-info {
+      /*.expedition-legend, .journey-info {
           max-height: 200px;
           overflow-y: auto;
       }
-  }*/
 
-  @media (max-width: 1024px) {
-    .expedition-container {
+      .expedition-container {
       display: flex;
       flex-direction: column;
       height: 100vh;
       min-height: 100vh;
-      /* Remove grid settings to use flexbox on mobile */
-    }
+    }*/
+    
     .expedition-map {
       order: 1;
       height: 50vh;
