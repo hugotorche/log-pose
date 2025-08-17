@@ -1171,6 +1171,10 @@
       min-height: 100vh;
     }*/
     
+    .expedition-subtitle {
+      display: none;
+    }
+
     .expedition-map {
       order: 1;
       height: 50vh;
@@ -1194,6 +1198,36 @@
       max-height: unset;
       /* Appears only after you scroll, uses remaining space */
     }
+      /* Shrink overall popup wrapper for mobile */
+  .leaflet-popup-content-wrapper {
+    min-width: 140px !important;
+    max-width: 220px !important;
+    padding: 4px !important;
+  }
+  /* Shrink content, fonts, and internal margins */
+  .leaflet-popup-content {
+    font-size: 11px !important;
+    margin: 6px !important;
+    padding: 0 !important;
+  }
+  /* Optional: reduce spacing in your custom popup content */
+  .expedition-popup {
+    min-width: 140px !important;
+    max-width: 220px !important;
+    padding: 4px !important;
+  }
+  .popup-title {
+    font-size: 13px !important;
+    margin-bottom: 2px !important;
+    padding-bottom: 2px !important;
+  }
+  .popup-description,
+  .popup-status,
+  .popup-dates,
+  .popup-highlights {
+    font-size: 10px !important;
+    margin: 3px 0 !important;
+  }
   }
   
 /* Compass rose */
