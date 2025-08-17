@@ -1148,7 +1148,7 @@
   }
   
   /* Responsive Design */
-  @media (max-width: 1024px) {
+  /*@media (max-width: 1024px) {
       .expedition-container {
           grid-template-areas: 
               "header"
@@ -1163,6 +1163,48 @@
           max-height: 200px;
           overflow-y: auto;
       }
+  }*/
+
+  @media (max-width: 1024px) {
+    .expedition-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      min-height: 100vh;
+      /* Remove grid settings to use flexbox on mobile */
+    }
+    .expedition-map {
+      order: 1;
+      height: 50vh;
+      min-height: 240px;
+      max-height: 60vh;
+      flex: 0 0 50vh;
+    }
+    .expedition-header {
+      order: 2;
+      height: 25vh;
+      min-height: 60px;
+      max-height: 32vh;
+      flex: 0 0 25vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .expedition-legend {
+      order: 3;
+      height: 25vh;
+      min-height: 60px;
+      max-height: 32vh;
+      flex: 0 0 25vh;
+      overflow-y: auto;
+    }
+    .journey-info {
+      order: 4;
+      flex: 1 1 auto;
+      min-height: 160px;
+      max-height: unset;
+      /* Appears only after you scroll, uses remaining space */
+    }
   }
   
 /* Compass rose */
