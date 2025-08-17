@@ -1153,8 +1153,8 @@
           grid-template-areas: 
               "header"
               "map"
-              "legend"
-              "info";
+              "info"
+              "legend";
           grid-template-columns: 1fr;
           grid-template-rows: auto 1fr auto auto;
       }
