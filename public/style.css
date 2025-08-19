@@ -1161,6 +1161,14 @@
       .expedition-header {
         height: 5vh;
       }
+      .expedition-title {
+        color: #ffd700;
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-bold);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin: 0;
+        letter-spacing: 1px;
+      }
       
       /*.expedition-legend, .journey-info {
           max-height: 200px;
