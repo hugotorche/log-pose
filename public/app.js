@@ -383,7 +383,7 @@ class ExpeditionMap {
             const legendItem = document.createElement('div');
             legendItem.className = 'legend-item';
             legendItem.innerHTML = `
-                <span class="legend-icon" style="color: ${item.color}; font-size: 16px;">${item.icon}</span>
+                <span class="legend-icon" style="color: ${item.color};">${item.icon}</span>
                 <span class="legend-label">${item.label}</span>
             `;
             legendContainer.appendChild(legendItem);
