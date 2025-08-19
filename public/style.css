@@ -1160,7 +1160,7 @@
       }
       .expedition-header {
         height: 5vh;
-        padding: var(--space-4);
+        padding: var(--space-6);
       }
       .expedition-title {
         color: #ffd700;
@@ -1219,7 +1219,7 @@
     }
     .journey-info h3 {
       color: #bbd4f9;
-      font-size: var(--font-size-md);
+      font-size: 15px;
       margin: 0 0 var(--space-12) 0;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
@@ -1230,6 +1230,11 @@
       margin: 0 0 var(--space-12) 0;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
+    .stat-label,
+    .stat-value {
+      font-size: var(--font-size-xs);
+    }
+
       /* Shrink overall popup wrapper for mobile */
     .leaflet-popup-content-wrapper {
       min-width: 140px !important;
@@ -1263,7 +1268,7 @@
 
     .legend-title {
       color: #ffd700;
-      font-size: var(--font-size-md);
+      font-size: 15px;
       margin: 0 0 var(--space-10) 0;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
       border-bottom: 1px solid rgba(255, 215, 0, 0.3);
