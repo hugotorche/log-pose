@@ -13,37 +13,37 @@ class ExpeditionMap {
             description: "Journey begins in the port city of Bordeaux, famous for its wine trade routes and maritime history. Here I was born and made all my education until the last years of graduate school.",
             startDate: "2016-09-01",
             endDate: "2020-06-30",
-            highlights: ["🌟 Place Gambetta", "🏄 15 ranking at Tennis", "📖 DCG Diploma obtained"]
+            highlights: ["❣️ Rue des Rempats / Librairie Mollat", "🎾 Best Tennis Ranking: 15", "📖 DCG obtained (Accounting National Diploma)"]
         },
         {
             id: "paris", 
             name: "Paris, France",
             coordinates: [48.8534951, 2.3483915],
             status: "completed",
-            description: "Passing through the capital of France, a hub of adventure and culture with centuries of history.",
+            description: "Passing through the capital of France, a hub of adventure and culture. For the first time I moved to Paris to work 6 months at Chanel. A transformative experience that shaped the end of my studies.",
             startDate: "2020-07-01",
             endDate: "2020-12-31",
-            highlights: ["Eiffel Tower", "Louvre Museum", "Seine River Cruise"]
+            highlights: ["❣️ Place de la Madeleine / Les Madeleines", "🏃 Sine Qua Non Run", "📖 IBM Data Science Coursera Certificate"]
         },
         {
             id: "copenhagen",
             name: "Copenhagen, Denmark", 
             coordinates: [55.6867243, 12.5700724],
             status: "completed",
-            description: "Currently exploring the maritime capital of Denmark, known for its Viking heritage and modern design.",
+            description: "International Exchange in the maritime capital of Denmark, known for its Viking heritage and modern design. I enjoyed everything from the courses at Copenhagen Business School to the roadtrip in all Scandinavia.",
             startDate: "2021-09-01",
             endDate: "2021-12-31",
-            highlights: [ "🌟 Frederiksberg & Nørrebro", "🌟 Tivoli Gardens", "👷 CBS Solbjerg Plads", "📖 S grade on all exams", "🏃 Copenhagen Half Marathon 2021"]
+            highlights: [ "❣️ Frederiksberg & Nørrebro", "🎢 Tivoli Gardens", "🏃 Copenhagen Half Marathon 2021", "📖 Maximum grade on all CBS courses"]
         },
         {
             id: "geneva",
             name: "Geneva, Switzerland", 
             coordinates: [46.2017559, 6.1466014],
             status: "current",
-            description: "Currently exploring the maritime capital of Denmark, known for its Viking heritage and modern design.",
+            description: "Currently exploring Switzerland with a bold experience at L'Occitane in Geneva. I could spend my all life in this swiss train. I would keep looking at Lake Leman, waiting to arrive at the bottom of the Ski slopes.",
             startDate: "2022-01-01",
-            endDate: "TBD",
-            highlights: ["Nyhavn Harbor", "Tivoli Gardens", "Little Mermaid Statue"]
+            endDate: "-",
+            highlights: [ "❣️ The small streets of Carouge", "🍃 Parc des Bastions & the giant Chess boards", "♟️ +1800 elo chess.com", "🧗 Started indoor Bouldering"]
         },
         {
             id: "tokyo",
@@ -53,7 +53,7 @@ class ExpeditionMap {
             description: "Spent 6 months on this island called Japan. Most of it was filled with a Short Term Assignment as a Data Expert for L'Occitane Group. I took the time to learn Japanese and to prepare for the JLPT N4 exam. The trees are so beautiful there, I wish I will see them again.",
             startDate: "2024-03-01",
             endDate: "2024-08-31",
-            highlights: [ "🌟 Likurakumano Shrine", "👷 Chiyoda-ku (千代田区)", "📖 Passed JLPT N4", "👘 Shimo-Kitazawa (下北沢)", "🏃 Workout around Tokyo Tower (東京タワー)"]
+            highlights: [ "❣️ Likurakumano Shrine", "👷 Chiyoda-ku (千代田区)", "📖 Passed JLPT N4", "👘 Shimo-Kitazawa (下北沢)", "🏃 Workout around Tokyo Tower (東京タワー)"]
         }
       ];
       this.routes = [
@@ -75,13 +75,13 @@ class ExpeditionMap {
           icon: `
 <svg width="27" height="18" viewBox="0 0 27 18" style="display:inline;vertical-align:middle">
   <line x1="2" y1="9" x2="15" y2="9" stroke="#a7a7a7" stroke-width="2" stroke-dasharray="5 3 5 2"/>
-  <polygon points="17,2 25,9 17,14 21,9" fill="#1A1423"/>
+  <polygon points="17,2 25,9 17,14 21,9" fill="#413f41"/>
 </svg>`,
           label: "Route Direction"
         },
         {
           icon: `<span style="font-size:8px;">🟣</span>`,
-          label: "City Explored"
+          label: "Explorations"
         },
         {
           icon: "🧭",
@@ -147,7 +147,8 @@ class ExpeditionMap {
                     <strong>Departure:</strong> ${location.endDate}
                 </div>
                 <div class="popup-highlights">
-                    <h4>📜 Navigation Details</h4>
+                    <br>
+                    <h4>🌟 Highlights</h4>
                     <ul>
                         ${location.highlights.map(highlight => `<li>${highlight}</li>`).join('')}
                     </ul>
@@ -233,12 +234,22 @@ class ExpeditionMap {
           [35.011665, 135.768326],     // Kyoto, Japan
           [34.672314, 135.484802],     // Osaka, Japan
           [35.183334, 136.899994],     // Nagoya, Japan
-          [50.073658, 14.418540],       // Prague
-          [37.5665, 126.9780],   // Seoul
-          [41.3874, 2.1686],      // Barcelona, Spain
-          [51.5072, -0.1276],     // London, UK
-          [53.3498, -6.2603],     // Dublin, Ireland
-          [41.9028, 12.4964]      // Rome (Roma), Italy
+          [50.073658, 14.418540],      // Prague, Czech Republic
+          [37.5665, 126.9780],         // Seoul, South Korea
+          [41.3874, 2.1686],           // Barcelona, Spain
+          [51.5072, -0.1276],          // London, UK
+          [53.3498, -6.2603],          // Dublin, Ireland
+          [41.9028, 12.4964],          // Roma, Italy
+          [42.9065518,-0.720481],      // Laruns, France
+          [68.4059, 18.6836],          // Björkliden, Sweden
+          [68.4385, 17.4273],          // Narvik, Norway
+          [33.9390665,136.182737],     // Nigishima, Japan
+          [35.4526128,139.4302524],    // Yokohama, Japan
+          [43.6701553,-1.4299441],     // Hossegor, France
+          [45.6343354,-1.0538619],     // Royan, France
+          [43.8896602,1.695105],       // Lisle sur Tarn, France
+          [49.6558436,0.5157681],      // Hattenville, France
+          [44.8653966,15.579437]       // Plitvices Lakes, Croatia
       ];
 
       cityPopCoords.forEach(([lat, lng]) => {
