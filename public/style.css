@@ -1160,6 +1160,7 @@
       }
       .expedition-header {
         height: 5vh;
+        padding: var(--space-4);
       }
       .expedition-title {
         color: #ffd700;
@@ -1215,6 +1216,19 @@
       min-height: 160px;
       max-height: unset;
       /* Appears only after you scroll, uses remaining space */
+    }
+    .journey-info h3 {
+      color: #bbd4f9;
+      font-size: var(--font-size-md);
+      margin: 0 0 var(--space-12) 0;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .journey-info h6 {
+      color: #bbd4f9;
+      font-size: var(--font-size-sm);
+      margin: 0 0 var(--space-12) 0;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
       /* Shrink overall popup wrapper for mobile */
     .leaflet-popup-content-wrapper {
