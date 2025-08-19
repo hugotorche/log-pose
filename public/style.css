@@ -1150,13 +1150,16 @@
   /* Responsive Design */
   @media (max-width: 1024px) {
       .expedition-container {
-          grid-template-areas: 
-              "header"
-              "map"
-              "legend"
-              "info";
-          grid-template-columns: 1fr;
-          grid-template-rows: auto 1fr auto auto;
+        grid-template-areas: 
+            "header"
+            "map"
+            "legend"
+            "info";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto auto;
+      }
+      .expedition-header {
+        height: 20vh;
       }
       
       /*.expedition-legend, .journey-info {
