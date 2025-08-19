@@ -1246,7 +1246,7 @@
     /* Optional: reduce spacing in your custom popup content */
     .expedition-popup {
       min-width: 140px !important;
-      max-width: 220px !important;
+      max-width: 280px !important;
       padding: 4px !important;
     }
     .popup-title {
