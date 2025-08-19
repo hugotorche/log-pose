@@ -1159,7 +1159,7 @@
         grid-template-rows: auto 1fr auto auto;
       }
       .expedition-header {
-        height: 20vh;
+        height: 5vh;
       }
       
       /*.expedition-legend, .journey-info {
