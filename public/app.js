@@ -85,7 +85,7 @@ class ExpeditionMap {
         },
         {
           icon: "🧭",
-          label: "Click to Reset view"
+          label: "Reset view"
         }
       ];      
       this.markers = [];
