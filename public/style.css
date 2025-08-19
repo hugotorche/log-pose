@@ -1246,9 +1246,11 @@
     }
 
     .legend-items {
-        display: flex;
+        /*display: flex;*/
         flex-direction: column;
         gap: var(--space-8);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
     }
 
   }
