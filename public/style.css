@@ -1160,14 +1160,10 @@
       }
       .expedition-header {
         height: 5vh;
-        padding: var(--space-6);
+        padding: 9px;
       }
       .expedition-title {
-        color: #ffd700;
-        font-size: var(--font-size-xl);
-        font-weight: var(--font-weight-bold);
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        margin: 0;
+        font-size: 17px;
         letter-spacing: 1px;
       }
       
