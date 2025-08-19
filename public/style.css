@@ -1147,8 +1147,9 @@
       }
   }
   
-  /* Responsive Design */
+  /* Mobile Responsive Design */
   @media (max-width: 1024px) {
+
       .expedition-container {
         grid-template-areas: 
             "header"
@@ -1158,138 +1159,121 @@
         grid-template-columns: 1fr;
         grid-template-rows: auto 1fr auto auto;
       }
+
       .expedition-header {
         height: 5vh;
         padding: 9px;
       }
+
       .expedition-title {
         font-size: 17px;
         letter-spacing: 1px;
       }
-      
-      /*.expedition-legend, .journey-info {
-          max-height: 200px;
-          overflow-y: auto;
-      }
 
       .expedition-container {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      min-height: 100vh;
-    }*/
-    .expedition-container {
-      min-height: 100vh;
-      height: auto;    /* Allow height to grow */
-    }
-    body {
-      overflow: auto;  /* Allow page scrolling */
-    }
+        min-height: 100vh;
+        height: auto;    /* Allow height to grow */
+      }
+      
+      body {
+        overflow: auto;  /* Allow page scrolling */
+      }
     
-    .expedition-subtitle {
-      display: none;
-    }
+      .expedition-subtitle {
+        display: none;
+      }
 
-    .expedition-map {
-      order: 1;
-      height: 42vh;
-      min-height: 240px;
-      max-height: 60vh;
-      flex: 0 0 50vh;
-    }
+      .expedition-map {
+        order: 1;
+        height: 42vh;
+        min-height: 240px;
+        max-height: 60vh;
+        flex: 0 0 50vh;
+      }
 
-    .expedition-legend {
-      order: 3;
-      height: 18vh;
-      min-height: 60px;
-      max-height: 32vh;
-      flex: 0 0 25vh;
-      overflow-y: auto;
-    }
-    .journey-info {
-      order: 4;
-      flex: 1 1 auto;
-      min-height: 160px;
-      max-height: unset;
-      /* Appears only after you scroll, uses remaining space */
-    }
-    .journey-info h3 {
-      color: #bbd4f9;
-      font-size: 15px;
-      margin: 0 0 var(--space-12) 0;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    }
+      .expedition-legend {
+        order: 3;
+        height: 18vh;
+        min-height: 60px;
+        max-height: 32vh;
+        flex: 0 0 25vh;
+        overflow-y: auto;
+      }
 
-    .journey-info h6 {
-      color: #bbd4f9;
-      font-size: var(--font-size-sm);
-      margin: 0 0 var(--space-12) 0;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    }
-    .stat-label,
-    .stat-value {
-      font-size: var(--font-size-xs);
-    }
+      .journey-info {
+        order: 4;
+        flex: 1 1 auto;
+        min-height: 160px;
+        max-height: unset;  /* Appears only after you scroll, uses remaining space */
+      }
+
+      .journey-info h3 {
+        font-size: 15px;
+      }
+
+      .journey-info h6 {
+        font-size: var(--font-size-sm);
+      }
+
+      .stat-label,
+      .stat-value {
+        font-size: var(--font-size-xs);
+      }
 
       /* Shrink overall popup wrapper for mobile */
-    .leaflet-popup-content-wrapper {
-      min-width: 140px !important;
-      max-width: 220px !important;
-      padding: 4px !important;
-    }
-    /* Shrink content, fonts, and internal margins */
-    .leaflet-popup-content {
-      font-size: 11px !important;
-      margin: 6px !important;
-      padding: 0 !important;
-    }
-    /* Optional: reduce spacing in your custom popup content */
-    .expedition-popup {
-      min-width: 140px !important;
-      max-width: 280px !important;
-      width: 200px;
-      padding: 4px !important;
-    }
-    .popup-title {
-      font-size: 13px !important;
-      margin-bottom: 2px !important;
-      padding-bottom: 2px !important;
-    }
-    .popup-description,
-    .popup-status,
-    .popup-dates,
-    .popup-highlights {
-      font-size: 10px !important;
-      margin: 3px 0 !important;
-    }
+      .leaflet-popup-content-wrapper {
+        min-width: 140px !important;
+        max-width: 220px !important;
+        padding: 4px !important;
+      }
+      /* Shrink content, fonts, and internal margins */
+      .leaflet-popup-content {
+        font-size: 11px !important;
+        margin: 6px !important;
+        padding: 0 !important;
+      }
+      /* Optional: reduce spacing in your custom popup content */
+      .expedition-popup {
+        min-width: 140px !important;
+        max-width: 280px !important;
+        padding: 4px !important;
+      }
+      .popup-title {
+        font-size: 13px !important;
+        margin-bottom: 2px !important;
+        padding-bottom: 2px !important;
+      }
+      .popup-description,
+      .popup-status,
+      .popup-dates,
+      .popup-highlights {
+        font-size: 10px !important;
+        margin: 3px 0 !important;
+      }
 
-    .legend-title {
-      color: #ffd700;
-      font-size: 15px;
-      margin: 0 0 var(--space-10) 0;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-      border-bottom: 1px solid rgba(255, 215, 0, 0.3);
-      padding-bottom: var(--space-6);
-    }
+      .legend-title {
+        font-size: 15px;
+        margin: 0 0 var(--space-10) 0;
+        padding-bottom: var(--space-6);
+      }
 
-    .legend-items {
-        /*display: flex;*/
+      .legend-items {
+        display: grid;
         flex-direction: column;
         gap: var(--space-8);
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
-    }
+      }
 
-    .legend-icon {
-      font-size: 10px;
-      width: 22px;
-      text-align: center;
-    }
+      .legend-icon {
+        font-size: 10px;
+        width: 22px;
+        text-align: center;
+      }
     
-    .legend-label {
-        font-size: var(--font-size-xs);
-        font-weight: var(--font-weight-medium);
-    }
+      .legend-label {
+          font-size: var(--font-size-xs);
+          font-weight: var(--font-weight-medium);
+      }
 
   }
   
