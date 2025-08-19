@@ -218,24 +218,6 @@ class ExpeditionMap {
     }
 
     addIcons() {
-      const starCoords = [
-        [55.6815651,12.5248235],     // CBS Solbjerg Pl. 3
-        [46.1673357,6.1050636],    // L'Occitane (Suisse) SA
-        [48.8708433,2.3215617]    // Chanel Madeleine
-      ];
-
-      starCoords.forEach(([lat, lng]) => {
-          const starMarker = L.marker([lat,lng], {
-            icon: L.divIcon({
-              className: 'star-map-icon',
-              html: '<span style="font-size:1.2rem;line-height:1">👷</span>',
-              iconSize: [16, 16],
-              iconAnchor: [8, 8]
-            }),
-            pane: 'iconPane'
-          }).addTo(this.map);
-      })
-
       const cityPopCoords = [
           [46.94809, 7.44744],         // Bern, Switzerland
           [47.37445, 8.54104],         // Zurich, Switzerland
@@ -266,12 +248,12 @@ class ExpeditionMap {
           </svg>
         `;
       
-        const cityPopMarker = L.marker([lat, lng], {
+        const cityPopIcon = L.marker([lat, lng], {
           icon: L.divIcon({
-            className: 'star-map-icon',
-            html: `<span style="font-size:5px;">🟣</span>`,
-            iconSize: [2, 2],
-            iconAnchor: [2, 2] // anchor at triangle base
+            className: 'city-pop-icon',
+            html: `<span>🟣</span>`,
+            iconSize: [4, 4],
+            iconAnchor: [2, 2]
           }),
           pane: 'iconPane'
         }).addTo(this.map);
