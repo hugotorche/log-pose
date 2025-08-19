@@ -1254,8 +1254,8 @@
     }
 
     .legend-icon {
-      font-size: var(--font-size-xs);
-      width: 24px;
+      font-size: 10px;
+      width: 22px;
       text-align: center;
     }
     
