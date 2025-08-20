@@ -3,7 +3,7 @@
 <br />
 <div align="center">
     <br />
-    <a href="https://log-pose-a0b2ccce9f1c.herokuapp.com/" style="font-size:26px;"><strong>Log Pose App</strong></a>
+    <strong href="https://log-pose-a0b2ccce9f1c.herokuapp.com/" style="font-size:26px";>Log Pose App</strong>
     <br />
     <a href="https://ch.linkedin.com/in/hugotorche">LinkedIn</a>
     &middot;
