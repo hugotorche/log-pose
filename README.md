@@ -1,16 +1,12 @@
 <a id="readme-top"></a>
 
-<br />
 <div align="center">
-    <br />
-    <strong href="https://log-pose-a0b2ccce9f1c.herokuapp.com/" style="font-size:26px";>Log Pose App</strong>
-    <br />
+    <h3><a href="https://log-pose-a0b2ccce9f1c.herokuapp.com/"><strong>Log Pose App</strong></a></h3>
     <a href="https://ch.linkedin.com/in/hugotorche">LinkedIn</a>
     &middot;
     <a href="https://github.com/hugotorche">GitHub</a>
     &middot;
     <a href="https://medium.com/p/550e0861389f">Medium</a>
-  </p>
 </div>
 
 ## About the App
