@@ -1,7 +1,9 @@
+<a id="readme-top"></a>
+
 <br />
 <div align="center">
     <br />
-    <a href="https://log-pose-a0b2ccce9f1c.herokuapp.com/" style="font-size:22px;"><strong>Log Pose App</strong></a>
+    <a href="https://log-pose-a0b2ccce9f1c.herokuapp.com/" style="font-size:26px;"><strong>Log Pose App</strong></a>
     <br />
     <a href="https://ch.linkedin.com/in/hugotorche">LinkedIn</a>
     &middot;
@@ -25,20 +27,25 @@ The name Log Pose is inspired from One Piece, it's a compass that helps the navi
 ## Visual Result
 <div align="center">
   <a>
-    <img src="public/images/app-visual.png" width="475" height="275">
+    <img src="public/images/app-visual.png" width="550" height="350">
   </a>
 </div>
 
 ### Built With
 
 * Languages:
+
     * ![HTML]
     * ![CSS]
     * ![JavaScript]
+
 * Frameworks:
+
     * [![Node][Node.js]][Node-url]
     * [![Express][Express.js]][Express-url]
+
 * External Tools:
+
     * [![Heroku][Heroku.com]][Heroku-url]
     * [![Perplexity][Perplexity.ai]][Perplexity-url]
 
@@ -49,30 +56,43 @@ The name Log Pose is inspired from One Piece, it's a compass that helps the navi
 Below are the useful commands related to app run and deployment process:
 
 * Install node-fetch
+
   ```sh
   /opt/homebrew/bin/npm install node-fetch
   ```
+
 * Export the map token
+
   ```sh
   export MAP_TILE_TOKEN=map-tile-token
   ```
+
 * Check the app size
+
   ```sh
   du -sh .
   ```
+
 * Run the app locally
+
   ```sh
   /opt/homebrew/bin/node app.js
   ```
+
 * Create Heroku app
+
   ```sh
   heroku create log-pose-app
   ```
+
 * Deploy to Heroku
+
   ```sh
   git push heroku main
   ```
+
 * Config Heroku variable
+
   ```sh
   heroku config:set MAP_TILE_TOKEN=map-tile-token
   ```
