@@ -272,7 +272,6 @@ class ExpeditionMap {
     }
 
     addCurvedRoutesAndArrows() {
-      // Plain arrow SVG (16x16, #1A1423)
       const plainArrowSvg = `
         <svg width="14" height="14" viewBox="0 0 14 14">
           <polygon points="3,2 13,8 3,14 7,8" fill="#1A1423"/>
