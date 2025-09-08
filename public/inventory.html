@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expedition Journey Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="map.css">
+    <link rel="stylesheet" href="inventory.css">
+</head>
+<body>
+    <div class="expedition-container">
+        <!-- Map Header -->
+        <div class="logpose-header">
+            <div class="logpose-titles">
+                <h1 class="logpose-title">⚓ Log Pose ⚓</h1>
+                <p class="logpose-subtitle">It's a small compass that won't point toward north, but it will show the next destination.</p>   
+            </div>
+            <div class="logpose-navbar" role="banner">
+                <nav class="nav_bar_lg d-flex justify-space-between" role="navigation">
+                    <div class="desktop_nav_menu">
+                        <a class="nav_li_projects" href="/">Map</a>
+                        <a class="nav_li_projects" href="/inventory">Inventory</a>
+                        <a class="nav_li_projects" href="/resume" target="_blank">Resume</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Map Container -->
+        <div class="expedition-map">
+                <div class="page-container">
+                    <nav class="adventure-nav">
+                        <div class="nav-content">
+                            <div class="category-filters">
+                                <button class="filter-btn active" data-category="all">All Gear</button>
+                                <div class="category-buttons" id="category-filters"></div>
+                            </div>
+                        </div>
+                    </nav>
+            
+                    <main class="inventory-main">
+                            <div class="inventory-grid" id="inventory-grid"></div>
+                    </main>
+                </div>
+        </div>
+
+        <!-- Journey Info Panel -->
+        <div class="journey-info" id="journeyInfo">
+            <h3>🗺️ Journey Status</h3>
+            <div class="current-location">
+                <span class="status-indicator pulsing"></span>
+                <span>Currently in: <strong>Geneva, Switzerland</strong> <br> Occupation: <strong>IT Engineer Analytics</strong></span>
+            </div>
+            <div class="journey-stats">
+                <h6>📊 Stats</h6>
+                <div class="stat-item">
+                    <span class="stat-label">Countries Lived in:</span>
+                    <span class="stat-value">4</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Cities Lived in:</span>
+                    <span class="stat-value">5</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Distance Traveled:</span>
+                    <span class="stat-value">~22,500 km</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Years on Journey:</span>
+                    <span class="stat-value">9 years</span>
+                </div>
+                <div class="stat-item-last">
+                    <span class="stat-label">Log Pose Size</span>
+                    <span class="stat-value">19 MB</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="inventory.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
