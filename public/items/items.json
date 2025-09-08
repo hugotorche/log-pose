@@ -1,0 +1,39 @@
+{
+  "inventoryItems": [
+      {"id": 1, "name": "Allergy Pill", "subname": "or Spray", "category": "supply", "packed": true, "description": "Saver against dust or pollen.", "photo": "/items/anti-allergic/img-1.png"},
+      {"id": 2, "name": "Leuchtturm Pen", "subname": "Criterium", "category": "supply", "packed": true, "description": "My criterium for daily scribing.", "photo": "/items/pen/img-1.png"},
+      {"id": 3, "name": "No-Iron Shirt", "subname": "Classic Color", "category": "supply", "packed": true, "description": "Very convenient for daily use.", "photo": "/items/blue-shirt/img-1.svg"},
+      {"id": 4, "name": "Polyvalent Shoes", "subname": "Trail Brand", "category": "supply", "packed": true, "description": "Good for walk, hike, trail and small climb.", "photo": "/items/super-shoes/img-1.png"},
+      {"id": 5, "name": "Patagonia Bags", "subname": "Duffel serie", "category": "supply", "packed": true, "description": "My favorite bags to transport my gear.", "photo": "/items/patagonia-bags/img-1.png"},
+      {"id": 6, "name": "The Black Swan", "subname": "by Nassim Taleb", "category": "book", "packed": false, "description": "Unpredictable events and their dynamics.", "photo": "/items/black-swan/img-1.png"},
+      {"id": 7, "name": "The Royal Game", "subname": "by Stefan Zweig", "category": "book", "packed": false, "description": "Chess game on a ship between two rivals.", "photo": "/items/royal-game/img-1.png"},
+      {"id": 8, "name": "Novel with Cocaine", "subname": "by M. Ageyev", "category": "book", "packed": false, "description": "Dostoevskian novel on cocaine addiction.", "photo": "/items/novel-with-cocaine/img-1.png"},
+      {"id": 9, "name": "Extreme Ownership", "subname": "by Jocko Willink", "category": "book", "packed": false, "description": "A Great leader must own all of his world.", "photo": "/items/extreme-ownership/img-1.png"},
+      {"id": 10, "name": "Brief History of Time", "subname": "by Stephen Hawking", "category": "book", "packed": false, "description": "Explore the forces that govern our universe.", "photo": "/items/brief-history-of-time/img-1.png"},
+      {"id": 11, "name": "The Humans Novel", "subname": "by Matt Haig", "category": "book", "packed": false, "description": "Story of an Alien on a mission on Earth.", "photo": "/items/the-humans/img-1.png"},
+      {"id": 12, "name": "Little Book of Hygge", "subname": "by Meik Wiking", "category": "book", "packed": false, "description": "Chess game on a ship between two rivals.", "photo": "/items/book-hygge/img-1.png"},
+      {"id": 13, "name": "The Book of Tea", "subname": "by Okakura Kakuzo", "category": "book", "packed": false, "description": "Intro to Tea ceremony and Asian thinking.", "photo": "/items/book-of-tea/img-1.png"},
+      {"id": 14, "name": "Suunto Peak 9 Pro", "subname": "Forest Edition", "category": "device", "packed": true, "description": "Great animated trail routes.", "photo": "/items/suunto-watch/img-1.png"},
+      {"id": 15, "name": "Bose Headphones", "subname": "Noise Cancelling", "category": "device", "packed": true, "description": "My favourite listening product.", "photo": "/items/bose-headphones/img-1.png"},
+      {"id": 16, "name": "Iphone Devices", "subname": "16 model", "category": "device", "packed": true, "description": "Daily driver since 2018.", "photo": "/items/iphone/img-1.png"},
+      {"id": 17, "name": "Macbook Devices", "subname": "Air and Pro", "category": "device", "packed": true, "description": "Use in professional and personal contexts.", "photo": "/items/macbook/img-1.png"},
+      {"id": 18, "name": "Windows Laptops", "subname": "Dell, HP, etc.", "category": "device", "packed": false, "description": "Used in professional and personal contexts.", "photo": "/items/windows-laptops/img-1.png"},
+      {"id": 19, "name": "Windows Package", "subname": "Extended", "category": "app", "packed": true, "description": "With Azure, Fabric, Power BI, VsCode...", "photo": "/items/windows-package/img-1.png"},
+      {"id": 20, "name": "Sublime Text", "subname": "IDE", "category": "app", "packed": false, "description": "Used for self-learning Python in 2020-2021.", "photo": "/items/sublime-text/img-1.png"},
+      {"id": 21, "name": "PostgreSQL & DBeaver", "subname": "RDBMS tool", "category": "app", "packed": false, "description": "Used for self-learning SQL in 2020-2021.", "photo": "/items/postgres/img-1.png"},
+      {"id": 22, "name": "Atlassian Suite", "subname": "For IT Work", "category": "app", "packed": true, "description": "Including Jira, Confluence and Bitbucket.", "photo": "/items/atlassian-suite/img-1.svg"},
+      {"id": 23, "name": "Tableau Admin", "subname": "Desktop / Server", "category": "app", "packed": false, "description": "4 years of work experience.", "photo": "/items/tableau/img-1.png"},
+      {"id": 24, "name": "PyCharm", "subname": "Jetbrains IDE", "category": "app", "packed": false, "description": "Used for self-learning Python in 2021-2022.", "photo": "/items/py-charm/img-1.png"},
+      {"id": 25, "name": "Knime", "subname": "Desktop App", "category": "app", "packed": false, "description": "Used during my studies at Copenhagen in 2021.", "photo": "/items/knime/img-1.png"},
+      {"id": 26, "name": "Postman", "subname": "Desktop App", "category": "app", "packed": true, "description": "Use for easy testing of APIs.", "photo": "/items/postman/img-1.svg"}
+  ],
+  "categories": [
+      {"name": "supply", "color": "#FFD700", "icon": "👟"},
+      {"name": "app", "color": "#696969", "icon": "📟"},
+      {"name": "device", "color": "#4682B4", "icon": "🎧"},
+      {"name": "book", "color": "#FFD700", "icon": "📚"},
+      {"name": "medicines", "color": "#FFD700", "icon": "🌳"}
+      
+      
+  ]
+}
