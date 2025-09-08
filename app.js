@@ -32,11 +32,15 @@ app.get('/tiles/:z/:x/:y.png', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'map.html'));
+});
+
+app.get('/inventory', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'inventory.html'));
 });
 
 app.get('/resume', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'Resume.pdf'));
+  res.sendFile(path.join(__dirname, 'public', 'resume.pdf'));
 });
 
 app.listen(port, () => {
