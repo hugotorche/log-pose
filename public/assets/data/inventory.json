@@ -25,7 +25,7 @@
       {"id": 23, "name": "Tableau Admin", "subname": "Desktop / Server", "category": "app", "packed": false, "description": "4 years of work experience.", "photo": "/assets/images/inventory/app/tableau-logo.png"},
       {"id": 24, "name": "PyCharm", "subname": "Jetbrains IDE", "category": "app", "packed": false, "description": "Used for self-learning Python in 2021-2022.", "photo": "/assets/images/inventory/app/py-charm.png"},
       {"id": 25, "name": "Knime", "subname": "Desktop App", "category": "app", "packed": false, "description": "Used during my studies at Copenhagen in 2021.", "photo": "/assets/images/inventory/app/knime-logo.png"},
-      {"id": 26, "name": "Postman", "subname": "Desktop App", "category": "app", "packed": true, "description": "Use for easy testing of APIs.", "photo": "/assets/images/inventory/app/postman-app.png"}
+      {"id": 26, "name": "Postman", "subname": "Desktop App", "category": "app", "packed": true, "description": "Use for easy testing of APIs.", "photo": "/assets/images/inventory/app/postman-app.svg"}
   ],
   "categories": [
       {"name": "supply", "color": "#FFD700", "icon": "👟"},
