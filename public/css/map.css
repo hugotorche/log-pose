@@ -1238,7 +1238,7 @@
       
       .logpose-titles {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         width: 100%;
         padding-left: 20px;
       }
