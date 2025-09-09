@@ -1240,6 +1240,10 @@
         display: none;
       }
 
+      .logpose-navbar {
+        display: none;
+      }
+
       .expedition-map {
         order: 1;
         height: 42vh;
