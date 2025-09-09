@@ -10,7 +10,7 @@ class RoadTripInventory {
     }
 
     loadInventoryData() {
-        fetch('/items/items.json')
+        fetch('/assets/data/inventory.json')
           .then(response => response.json())
           .then(data => {
             this.inventoryData = data;

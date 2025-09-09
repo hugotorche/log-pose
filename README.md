@@ -23,7 +23,7 @@ The name Log Pose is inspired from One Piece, it's a compass that helps the navi
 ## Visual Result
 <div align="center">
   <a>
-    <img src="public/app-visual.png" width="550" height="350">
+    <img src="public/assets/images/app-visual.png" width="550" height="350">
   </a>
 </div>
 

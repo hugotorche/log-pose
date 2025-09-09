@@ -40,7 +40,7 @@ app.get('/inventory', (req, res) => {
 });
 
 app.get('/resume', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'resume.pdf'));
+  res.sendFile(path.join(__dirname, 'public', 'assets/docs/resume.pdf'));
 });
 
 app.listen(port, () => {
