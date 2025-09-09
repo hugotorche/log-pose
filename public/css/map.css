@@ -1225,7 +1225,7 @@
       .logpose-title {
         font-size: 17px;
         letter-spacing: 1px;
-        padding-top: 2px;
+        padding-top: 1px;
       }
 
       .expedition-container {
@@ -1241,7 +1241,7 @@
         display: flex;
         justify-content: center;
         width: 100%;
-        padding-left: 10px;
+        padding-left: 7px;
       }
 
       .logpose-subtitle {
