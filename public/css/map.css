@@ -812,23 +812,21 @@
     width: inherit;
   }
   .logpose-navbar .nav_bar_lg .desktop_nav_menu .nav_li {
-    font-family: 'Inter', sans-serif;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 530;
     color: #ffd700;
     margin-right: 2.1rem;
     font-size: 18px;
   }
   .logpose-navbar .nav_bar_lg .desktop_nav_menu .nav_li_projects {
-    font-family: 'Inter', sans-serif;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 530;
     color: #ffd700;
     margin-right: 0.5rem;
     font-size: 16px;
     padding: 8px 8px 8px;
     border-radius: 20px;
-    border: 1px solid rgba(134, 142, 24, 0.9);
+    /*border: 1px solid rgba(134, 142, 24, 0.9);*/
     transition: all 0.3s ease 0s;
   }
   .logpose-navbar .nav_bar_lg .desktop_nav_menu .nav_li:hover {
