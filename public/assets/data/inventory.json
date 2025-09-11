@@ -25,7 +25,14 @@
       {"id": 23, "name": "Tableau Admin", "subname": "Desktop / Server", "category": "app", "packed": false, "description": "4 years of work experience.", "photo": "/assets/images/inventory/app/tableau-logo.png"},
       {"id": 24, "name": "PyCharm", "subname": "Jetbrains IDE", "category": "app", "packed": false, "description": "Used for self-learning Python in 2021-2022.", "photo": "/assets/images/inventory/app/py-charm.png"},
       {"id": 25, "name": "Knime", "subname": "Desktop App", "category": "app", "packed": false, "description": "Used during my studies at Copenhagen in 2021.", "photo": "/assets/images/inventory/app/knime-logo.png"},
-      {"id": 26, "name": "Postman", "subname": "Desktop App", "category": "app", "packed": true, "description": "Use for easy testing of APIs.", "photo": "/assets/images/inventory/app/postman-app.svg"}
+      {"id": 26, "name": "Postman", "subname": "Desktop App", "category": "app", "packed": true, "description": "Use for easy testing of APIs.", "photo": "/assets/images/inventory/app/postman-app.svg"},
+      {"id": 27, "name": "Benkyō", "subname": "IOS App", "category": "app", "packed": true, "description": "A pure gem to learn Japanese flashcards.", "photo": "/assets/images/inventory/app/benkyo-app.png"},
+      {"id": 28, "name": "Notion", "subname": "Desktop App", "category": "app", "packed": true, "description": "My favorite app for organizing documents.", "photo": "/assets/images/inventory/app/notion-app.svg"},
+      {"id": 29, "name": "Fly.io", "subname": "App Launcher", "category": "app", "packed": true, "description": "Makes it so easy to deploy new projects.", "photo": "/assets/images/inventory/app/fly-io.png"},
+      {"id": 30, "name": "GitHub", "subname": "Code Versioning", "category": "app", "packed": true, "description": "Using it for personal coding projects.", "photo": "/assets/images/inventory/app/github-logo.png"},
+      {"id": 31, "name": "Perplexity", "subname": "AI Engine", "category": "app", "packed": true, "description": "Main AI tool I use on a daily basis.", "photo": "/assets/images/inventory/app/perplexity-icon.png"},
+      {"id": 32, "name": "Busuu", "subname": "Language App", "category": "app", "packed": true, "description": "Using it to learn new languages.", "photo": "/assets/images/inventory/app/busuu-app.png"},
+      {"id": 33, "name": "Proton", "subname": "Mail, Pass, etc.", "category": "app", "packed": true, "description": "Effective for email and password management.", "photo": "/assets/images/inventory/app/proton-pass.svg"}
   ],
   "categories": [
       {"name": "supply", "color": "#FFD700", "icon": "👟"},
