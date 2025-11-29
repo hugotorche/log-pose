@@ -10,17 +10,17 @@ class ExpeditionMap {
             name: "Bordeaux, France",
             coordinates: [44.841225, -0.5800364],
             status: "completed",
-            description: "Journey begins in the port city of Bordeaux, famous for its wine trade routes and maritime history. Here I was born and made all my education until the last years of graduate school.",
+            description: "Journey begins in the port city of Bordeaux, famous for its wine and maritime history. Here I was born and completed all my education until the last years of graduate school. Most of my free time was spent playing tennis.",
             startDate: "2016-09-01",
             endDate: "2020-06-30",
-            highlights: ["❣️ Rue des Rempats / Librairie Mollat", "🎾 Best Tennis Ranking: 15", "📖 DCG obtained (Accounting National Diploma)"]
+            highlights: ["❣️ Rue des Remparts / Librairie Mollat", "🎾 Best Tennis Ranking: 15", "📖 DCG obtained (Accounting National Diploma)"]
         },
         {
             id: "paris", 
             name: "Paris, France",
             coordinates: [48.8534951, 2.3483915],
             status: "completed",
-            description: "Passing through the capital of France, a hub of adventure and culture. For the first time I moved to Paris to work 6 months at Chanel. A transformative experience that shaped the end of my studies.",
+            description: "Passing through the capital of France, I will never get tired of its architecture. For the first time, I moved to Paris to work for 6 months at Chanel. A transformative experience that shaped the end of my studies and guided me towards IT.",
             startDate: "2020-07-01",
             endDate: "2020-12-31",
             highlights: ["❣️ Place de la Madeleine / Les Madeleines", "🏃 Sine Qua Non Run", "📖 IBM Data Science Coursera Certificate"]
@@ -30,7 +30,7 @@ class ExpeditionMap {
             name: "Copenhagen, Denmark", 
             coordinates: [55.6867243, 12.5700724],
             status: "completed",
-            description: "International Exchange in the maritime capital of Denmark, known for its Viking heritage and modern design. I enjoyed everything from the courses at Copenhagen Business School to the roadtrip in all Scandinavia.",
+            description: "International Exchange in the capital of Denmark, Copenhagen in late summer is certainly one of the best things on earth. I enjoyed everything from the courses at Copenhagen Business School to the road trip in all of Scandinavia.",
             startDate: "2021-09-01",
             endDate: "2021-12-31",
             highlights: [ "❣️ Frederiksberg & Nørrebro", "🎢 Tivoli Gardens", "🏃 Copenhagen Half Marathon 2021", "📖 Maximum grade on all CBS courses"]
@@ -40,7 +40,7 @@ class ExpeditionMap {
             name: "Geneva, Switzerland", 
             coordinates: [46.2017559, 6.1466014],
             status: "current",
-            description: "Currently exploring Switzerland with a bold experience at L'Occitane in Geneva. I could spend my all life in this swiss train. I would keep looking at Lake Leman, waiting to arrive at the bottom of the Ski slopes.",
+            description: "Currently exploring Switzerland with a significant experience at L'Occitane in Geneva. I could spend my whole life on a Swiss train. I would keep looking at Lake Leman, waiting to arrive at the bottom of the Ski slopes.",
             startDate: "2022-01-01",
             endDate: "-",
             highlights: [ "❣️ The small streets of Carouge", "🍃 Parc des Bastions & the giant Chess boards", "♟️ +1800 elo chess.com", "🧗 Started indoor Bouldering"]
@@ -50,10 +50,10 @@ class ExpeditionMap {
             name: "Tokyo, Japan", 
             coordinates: [35.6768601, 139.7638947],
             status: "completed",
-            description: "Spent 6 months on this island called Japan. Most of it was filled with a Short Term Assignment as a Data Expert for L'Occitane Group. I took the time to learn Japanese and to prepare for the JLPT N4 exam. The trees are so beautiful there, I wish I will see them again.",
+            description: "Spent 6 months on this island called Japan. Most of it was filled with a short-term Assignment as a Data Expert for L'Occitane. I took the time to learn Japanese and to prepare for the JLPT N4 exam. The trees are so beautiful there, I wish I could see them again.",
             startDate: "2024-03-01",
             endDate: "2024-08-31",
-            highlights: [ "❣️ Likurakumano Shrine", "👷 Chiyoda-ku (千代田区)", "📖 Passed JLPT N4", "👘 Shimo-Kitazawa (下北沢)", "🏃 Workout around Tokyo Tower (東京タワー)"]
+            highlights: [ "❣️ Likurakumano Shrine", "👷 Chiyoda-ku (千代田区)", "📖 Passed JLPT N4", "👘 Shimo-Kitazawa (下北沢)"]
         }
       ];
       this.routes = [
@@ -502,7 +502,7 @@ class ExpeditionMap {
     viewDetails(locationId) {
         const location = this.locations.find(loc => loc.id === locationId);
         if (location) {
-            alert(`🗞️ Detailed expedition log for ${location.name} will be available soon!\n\nThis feature will include:\n• Photo gallery\n• Detailed journey notes\n• Interactive timeline\n• Local discoveries\n\nCurrent Status: ${location.status.toUpperCase()}`);
+            alert(`🗞️ Detailed expedition log for ${location.name} will be available in a future iteration!\n\nThis feature will include:\n• Photo gallery\n• Detailed journey notes\n• Interactive timeline\n• Local discoveries\n\nCurrent Status: ${location.status.toUpperCase()}`);
         }
     }
   }
