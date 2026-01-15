@@ -782,9 +782,11 @@
   }
   .logpose-titles {
     display: flex;
-    justify-content: space-between;
-    width: 2500px;
-    padding-left: 20px;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 2rem;
+    flex-shrink: 1;
+    max-width: 80%;
   }
   .logpose-title {
     color: #ffd700;
@@ -793,23 +795,29 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     margin: 0;
     padding-top: 5px;
-    width: 200px;
     letter-spacing: 2px;
+    word-wrap: break-word;
+    flex-shrink: 0;
   }
   .logpose-subtitle {
-      color: #f4f4f4;
-      font-size: var(--font-size-lg);
-      margin: var(--space-8) 0 0 0;
-      font-style: italic;
-      width: 900px;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    color: #f4f4f4;
+    font-size: var(--font-size-lg);
+    margin: 0;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    word-wrap: break-word;
+    flex: 1;
   }
   .logpose-navbar {
-    width: 100%;
-    padding-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
   }
   .logpose-navbar .nav_bar_lg {
     width: inherit;
+    white-space: nowrap;
   }
   .logpose-navbar .nav_bar_lg .desktop_nav_menu .nav_li {
     text-decoration: none;

@@ -40,7 +40,7 @@ class ExpeditionMap {
             name: "Geneva, Switzerland", 
             coordinates: [46.2017559, 6.1466014],
             status: "current",
-            description: "Currently exploring Switzerland with a significant experience at L'Occitane in Geneva. I could spend my whole life on a Swiss train. I would keep looking at Lake Leman, waiting to arrive at the bottom of the Ski slopes.",
+            description: "Currently exploring Switzerland with a significant experience at L'Occitane Group. I could spend my whole life on a Swiss train. I would keep looking at Lake Leman, waiting to arrive at the bottom of the Ski slopes.",
             startDate: "2022-01-01",
             endDate: "-",
             highlights: [ "❣️ The small streets of Carouge", "🍃 Parc des Bastions & the giant Chess boards", "♟️ +1800 elo chess.com", "🧗 Started indoor Bouldering"]
