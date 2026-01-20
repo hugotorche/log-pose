@@ -320,12 +320,12 @@
 }
 
 .page-container {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        overflow: auto;
-    }
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: auto;
+  }
 
 .page-container::before {
     content: '';
