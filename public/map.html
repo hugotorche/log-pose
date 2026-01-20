@@ -35,37 +35,13 @@
         <!-- Map Container -->
         <div id="map" class="expedition-map"></div>
 
-        <!-- Journey Info Panel -->
-        <div class="journey-info" id="journeyInfo">
-            <h3>🗺️ Journey Status</h3>
-            <div class="current-location">
-                <span class="status-indicator pulsing"></span>
-                <span>Currently in: <strong>Geneva, Switzerland</strong> <br> Occupation: <strong>IT Senior Engineer Analytics</strong></span>
-            </div>
-            <div class="journey-stats">
-                <h6>📊 Stats</h6>
-                <div class="stat-item">
-                    <span class="stat-label">Countries Lived in:</span>
-                    <span class="stat-value">4</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Cities Lived in:</span>
-                    <span class="stat-value">5</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Distance Traveled:</span>
-                    <span class="stat-value">~22,500 km</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Years on Journey:</span>
-                    <span class="stat-value">9 years</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Log Pose Size:</span>
-                    <span class="stat-value">19 MB</span>
-                </div>
-            </div>
-        </div>
+        <!-- Journey Info placeholder and HTML injection -->
+        <div id="journeyInfo"></div>
+        <script>
+        fetch('journey-info.html')
+            .then(response => response.text())
+            .then(html => document.getElementById('journeyInfo').innerHTML = html);
+        </script>
 
         <!-- Legend -->
         <div class="expedition-legend">
