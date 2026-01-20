@@ -307,6 +307,12 @@
     border-radius: none;
     box-shadow: none;
     direction: rtl;
+    -ms-overflow-style: none; /* Hide Scrollbar IE and Edge */
+    scrollbar-width: none; /* Hide Scrollbar Firefox */
+}
+
+.expedition-map::-webkit-scrollbar {
+  display: none;             /* Hide Scrollbar Chrome, Safari, Opera */
 }
 
 .expedition-map > * {
