@@ -1227,6 +1227,7 @@
       .logpose-header {
         height: 5vh;
         padding: 9px;
+        justify-content: center;
       }
 
       .logpose-title {
