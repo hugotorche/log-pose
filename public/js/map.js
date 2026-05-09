@@ -39,7 +39,7 @@ class ExpeditionMap {
             id: "geneva",
             name: "Geneva, Switzerland", 
             coordinates: [46.2017559, 6.1466014],
-            status: "current",
+            status: "completed",
             description: "Currently exploring Switzerland with a significant experience at L'Occitane Group. I could spend my whole life on a Swiss train. I would keep looking at Lake Leman, waiting to arrive at the bottom of the Ski slopes.",
             startDate: "2022-01-01",
             endDate: "-",
@@ -54,13 +54,24 @@ class ExpeditionMap {
             startDate: "2024-03-01",
             endDate: "2024-08-31",
             highlights: [ "❣️ Likurakumano Shrine", "👷 Chiyoda-ku (千代田区)", "📖 Passed JLPT N4", "👘 Shimo-Kitazawa (下北沢)"]
+        },
+        {
+            id: "saopaulo",
+            name: "São Paulo, Brazil", 
+            coordinates: [-23.533773, -46.625290],
+            status: "current",
+            description: "Navigating to Brazil and São Paulo for a 3 months professional mission for L'Occitane en Provence and L'Occitane au Brésil. Very excited to see the local team and products and to help them migrating from Alteryx to Dbt.",
+            startDate: "2026-05-01",
+            endDate: "-",
+            highlights: [ "❣️ Place 1", "🍃 Place 2", "♟️ Place 3", "🧗 Place 4"]
         }
       ];
       this.routes = [
         { from: "bordeaux", to: "paris", type: "unidirectional" },
         { from: "paris", to: "copenhagen", type: "unidirectional" },
         { from: "copenhagen", to: "geneva", type: "unidirectional" },
-        { from: "geneva", to: "tokyo", type: "bidirectional" }
+        { from: "geneva", to: "tokyo", type: "bidirectional" },
+        { from: "geneva", to: "saopaulo", type: "unidirectional" }
       ];
 
       this.legendItems = [
@@ -288,6 +299,8 @@ class ExpeditionMap {
         } else if ((route.from === "copenhagen" && route.to === "geneva") || 
                   (route.from === "geneva" && route.to === "copenhagen")) {
             curveFactor = 0.30; // more curve for Copenhagen-Geneva
+        } else if ((route.from === "geneva" && route.to === "saopaulo")) {
+            curveFactor = -0.10; // more curve for Copenhagen-Geneva
         }
         const ctrl = this.computeCurveControlPoint(start, end, curveFactor);
         const curvePts = this.bezierPoints(start, ctrl, end, 40);
@@ -310,6 +323,8 @@ class ExpeditionMap {
         } else if (route.from === "paris" && route.to === "copenhagen") {
           this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.62);
         } else if (route.from === "copenhagen" && route.to === "geneva") {
+            this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.52);
+        } else if (route.from === "geneva" && route.to === "saopaulo") {
             this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.52);
         } else {
           this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.45);
