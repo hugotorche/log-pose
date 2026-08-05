@@ -119,6 +119,7 @@ class ExpeditionMap {
       this.initializeMap();
       this.createLayers();
       this.addMarkers();
+      this.addLandesMarker();
       this.addIcons();
       this.addCurvedRoutesAndArrows();
       this.populateLegend();
@@ -257,6 +258,7 @@ class ExpeditionMap {
             maxWidth: 320,
             className: 'expedition-popup-wrapper'
         });
+        marker.locationId = loc.id;
         marker.addTo(this.markersLayer);
         this.markers.push(marker);
 
@@ -270,6 +272,68 @@ class ExpeditionMap {
             this.onMarkerClick(loc, e);
         });
       }
+    }
+
+    // Landes marker connected to Bordeaux with a dashed line and no arrow
+    // Shows up after "Focus Occitanie" zoom
+    addLandesMarker() {
+        const bordeauxMarker = this.markers.find(m => m.locationId === 'bordeaux');
+        const bordeauxCoords = this.locations.find(l => l.id === 'bordeaux').coordinates;
+        const landesCoords = [44.6167, -0.5333];
+
+        const landesMarker = L.marker(landesCoords, {
+            icon: L.divIcon({
+                className: 'expedition-marker',
+                html: `<div style="width:20px;height:20px;background:#96705B;border:4px solid #fff;border-radius:50%;box-shadow:0 0 12px #1a1423c0;"></div>`,
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            }),
+            pane: 'markerPane'
+        }).bindPopup('<div class="expedition-popup"><h3 class="popup-title">Landes</h3></div>', { className: 'expedition-popup-wrapper' });
+        landesMarker.addTo(this.markersLayer);
+
+        L.polyline([bordeauxCoords, landesCoords], {
+            color: "#1A1423",
+            weight: 2.5,
+            dashArray: "2 10",
+            opacity: 0.50
+        }).addTo(this.routeLayer);
+
+        if (!bordeauxMarker) return;
+
+        const midpoint = [
+            (bordeauxCoords[0] + landesCoords[0]) / 2,
+            (bordeauxCoords[1] + landesCoords[1]) / 2
+        ];
+        const mergedMarker = L.marker(midpoint, {
+            icon: L.divIcon({
+                className: 'expedition-marker',
+                html: `<div style="position:relative;width:20px;height:20px;background:#fff;border-radius:50%;box-shadow:0 0 12px #1a1423c0;">
+                    <span style="position:absolute;top:3.5px;left:3.5px;width:7px;height:7px;background:#96705B;border-radius:50%;"></span>
+                    <span style="position:absolute;bottom:3.5px;right:3.5px;width:7px;height:7px;background:#96705B;border-radius:50%;"></span>
+                </div>`,
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            }),
+            pane: 'markerPane'
+        }).bindPopup('<div class="expedition-popup"><h3 class="popup-title">Bordeaux & Landes</h3><p class="popup-description">Zoom in to tell them apart.</p></div>', { className: 'expedition-popup-wrapper' });
+
+        const MERGE_BELOW_ZOOM = 7;
+        const updateMerge = () => {
+            const shouldMerge = this.map.getZoom() < MERGE_BELOW_ZOOM;
+            if (shouldMerge) {
+                this.map.removeLayer(bordeauxMarker);
+                this.map.removeLayer(landesMarker);
+                if (!this.map.hasLayer(mergedMarker)) mergedMarker.addTo(this.map);
+            } else {
+                this.map.removeLayer(mergedMarker);
+                if (!this.map.hasLayer(bordeauxMarker)) bordeauxMarker.addTo(this.map);
+                if (!this.map.hasLayer(landesMarker)) landesMarker.addTo(this.map);
+            }
+        };
+
+        this.map.on('zoomend', updateMerge);
+        updateMerge();
     }
 
     addIcons() {
@@ -317,8 +381,8 @@ class ExpeditionMap {
           icon: L.divIcon({
             className: 'city-pop-icon',
             html: `<span>🟣</span>`,
-            iconSize: [4, 4],
-            iconAnchor: [2, 2]
+            iconSize: [3, 3],
+            iconAnchor: [1.5, 1.5]
           }),
           pane: 'iconPane'
         }).addTo(this.map);
