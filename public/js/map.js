@@ -13,57 +13,69 @@ class ExpeditionMap {
             description: "Journey begins in the port city of Bordeaux, famous for its wine and maritime history. Here I was born and completed all my education until the last years of graduate school. Most of my free time was spent playing tennis.",
             startDate: "2016-09-01",
             endDate: "2020-06-30",
-            highlights: ["❣️ Rue des Remparts / Librairie Mollat", "🎾 Best Tennis Ranking: 15", "📖 DCG obtained (Accounting National Diploma)"]
+            highlights: ["❣️ Rue des Remparts / Librairie Mollat", "🎾 Best Tennis Ranking: 15", "📖 DCG obtained (Accounting National Diploma)"],
+            photo: "/assets/images/map/bordeaux.jpg",
+            detailedNote: ""
         },
         {
-            id: "paris", 
+            id: "paris",
             name: "Paris, France",
             coordinates: [48.8534951, 2.3483915],
             status: "completed",
             description: "Passing through the capital of France, I will never get tired of its architecture. For the first time, I moved to Paris to work for 6 months at Chanel. A transformative experience that shaped the end of my studies and guided me towards IT.",
             startDate: "2020-07-01",
             endDate: "2020-12-31",
-            highlights: ["❣️ Place de la Madeleine / Les Madeleines", "🏃 Sine Qua Non Run", "📖 IBM Data Science Coursera Certificate"]
+            highlights: ["❣️ Place de la Madeleine / Les Madeleines", "🏃 Sine Qua Non Run", "📖 IBM Data Science Coursera Certificate"],
+            photo: "/assets/images/map/paris.jpg",
+            detailedNote: ""
         },
         {
             id: "copenhagen",
-            name: "Copenhagen, Denmark", 
+            name: "Copenhagen, Denmark",
             coordinates: [55.6867243, 12.5700724],
             status: "completed",
             description: "International Exchange in the capital of Denmark, Copenhagen in late summer is certainly one of the best things on earth. I enjoyed everything from the courses at Copenhagen Business School to the road trip in all of Scandinavia.",
             startDate: "2021-09-01",
             endDate: "2021-12-31",
-            highlights: [ "❣️ Frederiksberg & Nørrebro", "🎢 Tivoli Gardens", "🏃 Copenhagen Half Marathon 2021", "📖 Maximum grade on all CBS courses"]
+            highlights: [ "❣️ Frederiksberg & Nørrebro", "🎢 Tivoli Gardens", "🏃 Copenhagen Half Marathon 2021", "📖 Maximum grade on all CBS courses"],
+            photo: "/assets/images/map/copenhagen.jpg",
+            detailedNote: ""
         },
         {
             id: "geneva",
-            name: "Geneva, Switzerland", 
+            name: "Geneva, Switzerland",
             coordinates: [46.2017559, 6.1466014],
             status: "completed",
             description: "Currently exploring Switzerland with a significant experience at L'Occitane Group. I could spend my whole life on a Swiss train. I would keep looking at Lake Leman, waiting to arrive at the bottom of the Ski slopes.",
             startDate: "2022-01-01",
             endDate: "-",
-            highlights: [ "❣️ The small streets of Carouge", "🍃 Parc des Bastions & the giant Chess boards", "♟️ +1800 elo chess.com", "🧗 Started indoor Bouldering"]
+            highlights: [ "❣️ The small streets of Carouge", "🍃 Parc des Bastions & the giant Chess boards", "♟️ +1800 elo chess.com", "🧗 Started indoor Bouldering"],
+            photo: "/assets/images/map/geneva.jpg",
+            detailedNote: ""
         },
         {
             id: "tokyo",
-            name: "Tokyo, Japan", 
+            name: "Tokyo, Japan",
             coordinates: [35.6768601, 139.7638947],
             status: "completed",
             description: "Spent 6 months on this island called Japan. Most of it was filled with a short-term Assignment as a Data Expert for L'Occitane. I took the time to learn Japanese and to prepare for the JLPT N4 exam. The trees are so beautiful there, I wish I could see them again.",
             startDate: "2024-03-01",
             endDate: "2024-08-31",
-            highlights: [ "❣️ Likurakumano Shrine", "👷 Chiyoda-ku (千代田区)", "📖 Passed JLPT N4", "👘 Shimo-Kitazawa (下北沢)"]
+            highlights: [ "❣️ Likurakumano Shrine", "👷 Chiyoda-ku (千代田区)", "📖 Passed JLPT N4", "👘 Shimo-Kitazawa (下北沢)"],
+            photo: "/assets/images/map/tokyo.jpg",
+            detailedNote: ""
         },
         {
             id: "saopaulo",
-            name: "São Paulo, Brazil", 
+            name: "São Paulo, Brazil",
             coordinates: [-23.533773, -46.625290],
             status: "current",
             description: "Navigating to Brazil and São Paulo for a 3 months professional mission for L'Occitane en Provence and L'Occitane au Brésil. Very excited to see the local team and products and to help them migrating from Alteryx to Dbt.",
             startDate: "2026-05-01",
             endDate: "-",
-            highlights: [ "❣️ Place 1", "🍃 Place 2", "♟️ Place 3", "🧗 Place 4"]
+            highlights: [ "❣️ Place 1", "🍃 Place 2", "♟️ Place 3", "🧗 Place 4"],
+            photo: "/assets/images/map/saopaulo.jpg",
+            detailedNote: ""
         }
       ];
       this.routes = [
@@ -71,7 +83,7 @@ class ExpeditionMap {
         { from: "paris", to: "copenhagen", type: "unidirectional" },
         { from: "copenhagen", to: "geneva", type: "unidirectional" },
         { from: "geneva", to: "tokyo", type: "bidirectional" },
-        { from: "geneva", to: "saopaulo", type: "unidirectional" }
+        { from: "geneva", to: "saopaulo", type: "bidirectional" }
       ];
 
       this.legendItems = [
@@ -95,7 +107,7 @@ class ExpeditionMap {
           label: "Explorations"
         },
         {
-          icon: "🧭",
+          icon: "🌍",
           label: "Reset view"
         }
       ];      
@@ -110,7 +122,8 @@ class ExpeditionMap {
       this.addIcons();
       this.addCurvedRoutesAndArrows();
       this.populateLegend();
-      this.addCompassRose();
+      this.addMapControls();
+      this.setupDetailedLogModal();
       this.startAnimations();
 
       // Fit map to show all locations
@@ -143,31 +156,61 @@ class ExpeditionMap {
       this.markersLayer = L.layerGroup().addTo(this.map);
     }
 
-    createPopupContent(location) {
+    // Shared markup for a location's info (name, status, description, dates, highlights).
+    // Used by both the map popup and the "Detailed Log" modal to avoid duplicating it twice.
+    createLocationDetailsHTML(location) {
         const statusClass = location.status;
         const statusText = location.status === 'current' ? 'Currently Here' :
                           location.status === 'completed' ? 'Journey Complete' : 'Planned Visit';
-        
+
+        return `
+            <h3 class="popup-title">${location.name}</h3>
+            <div class="popup-status ${statusClass}">${statusText}</div>
+            <p class="popup-description">${location.description}</p>
+            <div class="popup-dates">
+                <strong>Arrival:</strong> ${location.startDate}<br>
+                <strong>Departure:</strong> ${location.endDate}
+            </div>
+            <div class="popup-highlights">
+                <br>
+                <h4>🌟 Highlights</h4>
+                <ul>
+                    ${location.highlights.map(highlight => `<li>${highlight}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+    }
+
+    createPopupContent(location) {
         return `
             <div class="expedition-popup">
-                <h3 class="popup-title">${location.name}</h3>
-                <div class="popup-status ${statusClass}">${statusText}</div>
-                <p class="popup-description">${location.description}</p>
-                <div class="popup-dates">
-                    <strong>Arrival:</strong> ${location.startDate}<br>
-                    <strong>Departure:</strong> ${location.endDate}
-                </div>
-                <div class="popup-highlights">
-                    <br>
-                    <h4>🌟 Highlights</h4>
-                    <ul>
-                        ${location.highlights.map(highlight => `<li>${highlight}</li>`).join('')}
-                    </ul>
-                </div>
+                ${this.createLocationDetailsHTML(location)}
                 <button class="popup-button" onclick="expeditionMap.viewDetails('${location.id}')">
                     📖 View Detailed Log
                 </button>
             </div>
+        `;
+    }
+
+    // Detailed Log = same info as the popup, plus a photo and a longer personal
+    // note when they're filled in. Both are optional so nothing breaks/looks
+    // half-empty while photos/notes are still being added per location.
+    createDetailedLogHTML(location) {
+        const photoHTML = location.photo
+            ? `<img class="detailed-log-photo" src="${location.photo}" alt="${location.name}" onerror="this.remove()">`
+            : '';
+        const noteHTML = location.detailedNote
+            ? `
+                <div class="popup-highlights">
+                    <h4>📝 Log Entry</h4>
+                    <p class="popup-description">${location.detailedNote}</p>
+                </div>`
+            : '';
+
+        return `
+            ${photoHTML}
+            ${this.createLocationDetailsHTML(location)}
+            ${noteHTML}
         `;
     }
   
@@ -218,13 +261,13 @@ class ExpeditionMap {
         this.markers.push(marker);
 
         // Store reference for current location
-        if (location.status === 'current') {
+        if (loc.status === 'current') {
             this.currentLocationMarker = marker;
         }
 
         // Add click event for enhanced interaction
         marker.on('click', (e) => {
-            this.onMarkerClick(location, e);
+            this.onMarkerClick(loc, e);
         });
       }
     }
@@ -314,17 +357,15 @@ class ExpeditionMap {
         }).addTo(this.routeLayer);
   
         if (route.type === "bidirectional") {
-          // Arrow towards Tokyo (forward): t = 0.30
+          // Arrow towards "to" (forward): t = 0.30
           this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.30);
-          // Arrow towards Geneva (reverse): t = 0.30 on reversed curve (= 0.70 on forward)
+          // Arrow towards "from" (reverse): t = 0.30 on reversed curve (= 0.70 on forward)
           this.drawArrowOnCurve(curvePts.slice().reverse(), plainArrowSvg, 0.30);
         } else if (route.from === "bordeaux" && route.to === "paris") {
           this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.50); // exactly at midpoint
         } else if (route.from === "paris" && route.to === "copenhagen") {
           this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.62);
         } else if (route.from === "copenhagen" && route.to === "geneva") {
-            this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.52);
-        } else if (route.from === "geneva" && route.to === "saopaulo") {
             this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.52);
         } else {
           this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.45);
@@ -406,23 +447,39 @@ class ExpeditionMap {
         console.log('Legend populated with', this.legendItems.length, 'items');
     }
 
-    addCompassRose() {
+    addMapControls() {
+        const mapContainer = document.getElementById('map');
+        if (!mapContainer) return;
+
+        const europeBtn = document.createElement('div');
+        europeBtn.className = 'map-control-btn europe-focus-btn';
+        europeBtn.innerHTML = '<span class="control-emoji">🏰</span>';
+        europeBtn.title = 'Focus on Europe';
+        europeBtn.onclick = () => this.focusEurope();
+        mapContainer.appendChild(europeBtn);
+
         const compassDiv = document.createElement('div');
-        compassDiv.className = 'compass-rose';
-        compassDiv.innerHTML = '<span class="compass-emoji">🧭</span>';
+        compassDiv.className = 'map-control-btn compass-rose';
+        compassDiv.innerHTML = '<span class="control-emoji compass-emoji">🌍</span>';
         compassDiv.title = 'Reset View (Press R)';
         compassDiv.onclick = () => this.resetMapView();
-        
-        const mapContainer = document.getElementById('map');
-        if (mapContainer) {
-            mapContainer.appendChild(compassDiv);
-        }
+        mapContainer.appendChild(compassDiv);
     }
 
     resetMapView() {
         if (this.markers.length > 0) {
             const group = new L.featureGroup(this.markers);
             this.map.fitBounds(group.getBounds().pad(0.1));
+        }
+    }
+
+    focusEurope() {
+        const europeIds = ['bordeaux', 'paris', 'copenhagen', 'geneva'];
+        const coords = this.locations
+            .filter(loc => europeIds.includes(loc.id))
+            .map(loc => loc.coordinates);
+        if (coords.length > 0) {
+            this.map.fitBounds(L.latLngBounds(coords).pad(0.7));
         }
     }
 
@@ -517,8 +574,32 @@ class ExpeditionMap {
     viewDetails(locationId) {
         const location = this.locations.find(loc => loc.id === locationId);
         if (location) {
-            alert(`🗞️ Detailed expedition log for ${location.name} will be available in a future iteration!\n\nThis feature will include:\n• Photo gallery\n• Detailed journey notes\n• Interactive timeline\n• Local discoveries\n\nCurrent Status: ${location.status.toUpperCase()}`);
+            this.openDetailedLog(location);
         }
+    }
+
+    setupDetailedLogModal() {
+        const modal = document.getElementById('detailedLogModal');
+        if (!modal) return;
+
+        modal.querySelectorAll('[data-close-modal]').forEach(el => {
+            el.addEventListener('click', () => this.closeDetailedLog());
+        });
+    }
+
+    openDetailedLog(location) {
+        const modal = document.getElementById('detailedLogModal');
+        const body = document.getElementById('detailedLogBody');
+        if (!modal || !body) return;
+
+        body.innerHTML = this.createDetailedLogHTML(location);
+        this.map.closePopup();
+        modal.hidden = false;
+    }
+
+    closeDetailedLog() {
+        const modal = document.getElementById('detailedLogModal');
+        if (modal) modal.hidden = true;
     }
   }
   
@@ -536,6 +617,7 @@ document.addEventListener('keydown', (e) => {
             expeditionMap.resetMapView();
             break;
         case 'escape':
+            expeditionMap.closeDetailedLog();
             expeditionMap.map.closePopup();
             break;
     }

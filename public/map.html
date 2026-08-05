@@ -13,6 +13,7 @@
           crossorigin=""/>
     
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/map.css">
 </head>
 <body>
@@ -42,6 +43,15 @@
             <div class="legend-items" id="legendItems">
                 <!-- Legend items will be populated by JavaScript -->
             </div>
+        </div>
+    </div>
+
+    <!-- Detailed Log Modal -->
+    <div id="detailedLogModal" class="detailed-log-modal" hidden>
+        <div class="detailed-log-backdrop" data-close-modal></div>
+        <div class="detailed-log-content" role="dialog" aria-modal="true" aria-label="Detailed expedition log">
+            <button class="detailed-log-close" data-close-modal aria-label="Close detailed log">&times;</button>
+            <div id="detailedLogBody" class="detailed-log-body"></div>
         </div>
     </div>
 
