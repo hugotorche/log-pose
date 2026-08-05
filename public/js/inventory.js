@@ -169,7 +169,6 @@ class RoadTripInventory {
         
         div.className = `item-card ${item.packed ? 'packed' : ''}`;
         div.dataset.itemId = item.id.toString();
-        div.style.borderColor = category ? category.color : '#8B4513';
 
         const essentialBadge = item.essential ? '<span class="essential-badge">Essential</span>' : '';
         const packedStatus = item.packed ? 'Ongoing' : 'Finished';
@@ -189,7 +188,7 @@ class RoadTripInventory {
                 <div class="item-icon">${category ? category.icon : '📦'}</div>
                 <span class="essential-badge">${this.capitalizeFirst(item.category)}</span>
                 
-                <span class="pack-status">
+                <span class="pack-status ${item.packed ? 'packed' : 'unpacked'}">
                     ${packedStatus}
                 </span>
                 
@@ -197,32 +196,6 @@ class RoadTripInventory {
         `;
 
         return div;
-    }
-
-    createItemCard(item) {
-        const category = this.categories.find(cat => cat.name === item.category);
-        const packedClass = item.packed ? 'Ongoing' : '';
-        const packedStatus = item.packed ? 'Ongoing' : 'Finished';
-        const essentialBadge = item.essential ? '<span class="essential-badge">Essential</span>' : '';
-
-        return `
-            <div class="item-card ${packedClass}" data-item-id="${item.id}" style="border-color: ${category ? category.color : '#8B4513'}">
-                <div class="item-header">
-                    <div class="item-icon">${category ? category.icon : '📦'}</div>
-                    <div class="item-info">
-                        <h3 class="item-name">${item.name}</h3>
-                        <div class="item-category">${this.capitalizeFirst(item.category)}</div>
-                    </div>
-                </div>
-                <p class="item-description">${item.description}</p>
-                <div class="item-status">
-                    ${essentialBadge}
-                    <span class="pack-status ${item.packed ? 'packed' : 'unpacked'}">
-                        ${packedStatus}
-                    </span>
-                </div>
-            </div>
-        `;
     }
 
     toggleItemPacked(itemId) {
@@ -245,7 +218,7 @@ class RoadTripInventory {
             const statusElement = card.querySelector('.pack-status');
             if (statusElement) {
                 statusElement.textContent = item.packed ? 'Ongoing' : 'Finished';
-                statusElement.className = `pack-status ${item.packed ? 'Ongoing' : 'Finished'}`;
+                statusElement.className = `pack-status ${item.packed ? 'packed' : 'unpacked'}`;
             }
 
             // Add animation effect

@@ -37,11 +37,11 @@
       {"id": 35, "name": "Proton", "subname": "Mail, Pass, etc.", "category": "app", "packed": true, "description": "Effective for email and password management.", "photo": "/assets/images/inventory/app/proton-pass.svg"}
   ],
   "categories": [
-      {"name": "supply", "color": "#FFD700", "icon": "👟"},
+      {"name": "supply", "color": "#D2B48C", "icon": "👟"},
       {"name": "app", "color": "#696969", "icon": "📟"},
       {"name": "device", "color": "#4682B4", "icon": "🎧"},
-      {"name": "book", "color": "#FFD700", "icon": "📚"},
-      {"name": "medicines", "color": "#FFD700", "icon": "🌳"}
+      {"name": "book", "color": "#D2B48C", "icon": "📚"},
+      {"name": "medicines", "color": "#D2B48C", "icon": "🌳"}
       
       
   ]
