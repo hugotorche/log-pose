@@ -451,6 +451,31 @@ class ExpeditionMap {
         const mapContainer = document.getElementById('map');
         if (!mapContainer) return;
 
+        const occitanieBtn = document.createElement('div');
+        occitanieBtn.className = 'map-control-btn occitanie-focus-btn';
+        // No Unicode emoji matches the Occitan cross (12-pommel cross of Toulouse),
+        // so it's drawn as an inline SVG instead: a plus-shaped body with 3 balls
+        // fanned out at the end of each of the 4 arms.
+        occitanieBtn.innerHTML = `
+            <svg class="control-emoji occitan-cross" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M42,8 H58 V42 H92 V58 H58 V92 H42 V58 H8 V42 H42 Z"/>
+                <circle cx="50" cy="6" r="7"/>
+                <circle cx="36" cy="15" r="7"/>
+                <circle cx="64" cy="15" r="7"/>
+                <circle cx="50" cy="94" r="7"/>
+                <circle cx="36" cy="85" r="7"/>
+                <circle cx="64" cy="85" r="7"/>
+                <circle cx="6" cy="50" r="7"/>
+                <circle cx="15" cy="36" r="7"/>
+                <circle cx="15" cy="64" r="7"/>
+                <circle cx="94" cy="50" r="7"/>
+                <circle cx="85" cy="36" r="7"/>
+                <circle cx="85" cy="64" r="7"/>
+            </svg>`;
+        occitanieBtn.title = 'Focus on Occitanie';
+        occitanieBtn.onclick = () => this.focusOccitanie();
+        mapContainer.appendChild(occitanieBtn);
+
         const europeBtn = document.createElement('div');
         europeBtn.className = 'map-control-btn europe-focus-btn';
         europeBtn.innerHTML = '<span class="control-emoji">🏰</span>';
@@ -481,6 +506,17 @@ class ExpeditionMap {
         if (coords.length > 0) {
             this.map.fitBounds(L.latLngBounds(coords).pad(0.7));
         }
+    }
+
+    focusOccitanie() {
+        // No marker sits in Occitanie, so use a fixed geographic box for the
+        // French region (roughly Toulouse/Montpellier/Perpignan/Pyrénées) instead
+        // of deriving bounds from this.locations like focusEurope() does.
+        const occitanieBounds = [
+            [42.5, -0.5],
+            [46.7, 7.0]
+        ];
+        this.map.fitBounds(occitanieBounds);
     }
 
     onMarkerClick(location, event) {

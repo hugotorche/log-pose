@@ -1174,6 +1174,15 @@
   right: 78px; /* 20px (compass) + 48px (button) + 10px (gap) */
 }
 
+.occitanie-focus-btn {
+  right: 136px; /* 78px (europe) + 48px (button) + 10px (gap) */
+}
+
+.occitanie-focus-btn .occitan-cross {
+  width: 22px;
+  height: 22px;
+}
+
 .compass-rose {
   right: 20px;
 }
