@@ -45,7 +45,7 @@ class ExpeditionMap {
             id: "geneva",
             name: "Geneva, Switzerland",
             coordinates: [46.2017559, 6.1466014],
-            status: "completed",
+            status: "current",
             description: "Currently exploring Switzerland with a significant experience at L'Occitane Group. I could spend my whole life on a Swiss train. I would keep looking at Lake Leman, waiting to arrive at the bottom of the Ski slopes.",
             startDate: "2022-01-01",
             endDate: "-",
@@ -69,11 +69,11 @@ class ExpeditionMap {
             id: "saopaulo",
             name: "São Paulo, Brazil",
             coordinates: [-23.533773, -46.625290],
-            status: "current",
+            status: "completed",
             description: "Navigating to Brazil and São Paulo for a 3 months professional mission for L'Occitane en Provence and L'Occitane au Brésil. Very excited to see the local team and products and to help them migrating from Alteryx to Dbt.",
             startDate: "2026-05-01",
-            endDate: "-",
-            highlights: [ "❣️ Place 1", "🍃 Place 2", "♟️ Place 3", "🧗 Place 4"],
+            endDate: "2026-08-31",
+            highlights: [ "❣️ Place 1", "🍃 Place 2", "♟️ Place 3", "🎾 Playing Tennis in "],
             photo: "/assets/images/map/saopaulo.jpg",
             detailedNote: ""
         }
@@ -120,6 +120,7 @@ class ExpeditionMap {
       this.createLayers();
       this.addMarkers();
       this.addLandesMarker();
+      this.addVaudMarker();
       this.addIcons();
       this.addCurvedRoutesAndArrows();
       this.populateLegend();
@@ -289,7 +290,7 @@ class ExpeditionMap {
                 iconAnchor: [10, 10]
             }),
             pane: 'markerPane'
-        }).bindPopup('<div class="expedition-popup"><h3 class="popup-title">Landes</h3></div>', { className: 'expedition-popup-wrapper' });
+        }).bindPopup('<div class="expedition-popup"><h3 class="popup-title">Landes</h3><p class="popup-description">The pine forests and dunes stretching south of Bordeaux, where summers meant Atlantic waves and the smell of resin in the woods.</p></div>', { className: 'expedition-popup-wrapper' });
         landesMarker.addTo(this.markersLayer);
 
         L.polyline([bordeauxCoords, landesCoords], {
@@ -316,7 +317,7 @@ class ExpeditionMap {
                 iconAnchor: [10, 10]
             }),
             pane: 'markerPane'
-        }).bindPopup('<div class="expedition-popup"><h3 class="popup-title">Bordeaux & Landes</h3><p class="popup-description">Zoom in to tell them apart.</p></div>', { className: 'expedition-popup-wrapper' });
+        }).bindPopup('<div class="expedition-popup"><h3 class="popup-title">Bordeaux & Landes</h3><p class="popup-description">Home turf, from the port city to the pine forests just south of it. Zoom in to tell them apart.</p></div>', { className: 'expedition-popup-wrapper' });
 
         const MERGE_BELOW_ZOOM = 7;
         const updateMerge = () => {
@@ -329,6 +330,68 @@ class ExpeditionMap {
                 this.map.removeLayer(mergedMarker);
                 if (!this.map.hasLayer(bordeauxMarker)) bordeauxMarker.addTo(this.map);
                 if (!this.map.hasLayer(landesMarker)) landesMarker.addTo(this.map);
+            }
+        };
+
+        this.map.on('zoomend', updateMerge);
+        updateMerge();
+    }
+
+    // Vaud marker connected to Geneva with a dashed line and no arrow
+    // Shows up after "Focus Occitanie" zoom, same merge logic as addLandesMarker()
+    addVaudMarker() {
+        const genevaMarker = this.markers.find(m => m.locationId === 'geneva');
+        const genevaCoords = this.locations.find(l => l.id === 'geneva').coordinates;
+        const vaudCoords = [46.514, 6.565]; // Lausanne / Morges area, Vaud, Switzerland
+
+        const vaudMarker = L.marker(vaudCoords, {
+            icon: L.divIcon({
+                className: 'expedition-marker',
+                html: `<div style="width:20px;height:20px;background:#96705B;border:4px solid #fff;border-radius:50%;box-shadow:0 0 12px #1a1423c0;"></div>`,
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            }),
+            pane: 'markerPane'
+        }).bindPopup('<div class="expedition-popup"><h3 class="popup-title">Vaud</h3><p class="popup-description">Along the shores of Lake Léman past Geneva, where the vineyards of Lavaux climb the hillsides and Lausanne\'s old town looks out over the water.</p></div>', { className: 'expedition-popup-wrapper' });
+        vaudMarker.addTo(this.markersLayer);
+
+        L.polyline([genevaCoords, vaudCoords], {
+            color: "#1A1423",
+            weight: 2.5,
+            dashArray: "2 10",
+            opacity: 0.50
+        }).addTo(this.routeLayer);
+
+        if (!genevaMarker) return;
+
+        const midpoint = [
+            (genevaCoords[0] + vaudCoords[0]) / 2,
+            (genevaCoords[1] + vaudCoords[1]) / 2
+        ];
+        const mergedMarker = L.marker(midpoint, {
+            icon: L.divIcon({
+                className: 'expedition-marker',
+                html: `<div style="position:relative;width:20px;height:20px;background:#fff;border-radius:50%;box-shadow:0 0 12px #1a1423c0;">
+                    <span style="position:absolute;top:3.5px;left:3.5px;width:7px;height:7px;background:#96705B;border-radius:50%;"></span>
+                    <span style="position:absolute;bottom:3.5px;right:3.5px;width:7px;height:7px;background:#96705B;border-radius:50%;"></span>
+                </div>`,
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            }),
+            pane: 'markerPane'
+        }).bindPopup('<div class="expedition-popup"><h3 class="popup-title">Geneva & Vaud</h3><p class="popup-description">Two neighbouring cantons along Lake Léman. Zoom in to tell them apart.</p></div>', { className: 'expedition-popup-wrapper' });
+
+        const MERGE_BELOW_ZOOM = 7;
+        const updateMerge = () => {
+            const shouldMerge = this.map.getZoom() < MERGE_BELOW_ZOOM;
+            if (shouldMerge) {
+                this.map.removeLayer(genevaMarker);
+                this.map.removeLayer(vaudMarker);
+                if (!this.map.hasLayer(mergedMarker)) mergedMarker.addTo(this.map);
+            } else {
+                this.map.removeLayer(mergedMarker);
+                if (!this.map.hasLayer(genevaMarker)) genevaMarker.addTo(this.map);
+                if (!this.map.hasLayer(vaudMarker)) vaudMarker.addTo(this.map);
             }
         };
 
@@ -367,7 +430,8 @@ class ExpeditionMap {
           [45.6343354,-1.0538619],     // Royan, France
           [43.8896602,1.695105],       // Lisle sur Tarn, France
           [49.6558436,0.5157681],      // Hattenville, France
-          [44.8653966,15.579437]       // Plitvices Lakes, Croatia
+          [44.8653966,15.579437],      // Plitvices Lakes, Croatia
+          [-22.9068467, -43.1728965]   // Rio de Janeiro, Brazil
       ];
 
       cityPopCoords.forEach(([lat, lng]) => {
