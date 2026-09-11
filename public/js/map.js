@@ -58,12 +58,12 @@ class ExpeditionMap {
             name: "Tokyo, Japan",
             coordinates: [35.6768601, 139.7638947],
             status: "completed",
-            description: "Spent 6 months on this island called Japan. Most of it was filled with a short-term Assignment as a Data Expert for L'Occitane. I took the time to learn Japanese and to prepare for the JLPT N4 exam. The trees are so beautiful there, I wish I could see them again.",
+            description: "I spent six months in Japan, a country that left a deep impression on me. Most of that time was devoted to a short-term data assignment for L’Occitane. In parallel, I studied Japanese and passed the JLPT N4. The beauty of the trees there still stays with me, and I hope to see them again.",
             startDate: "2024-03-01",
             endDate: "2024-08-31",
             highlights: [ "❣️ Likurakumano Shrine", "👷 Chiyoda-ku (千代田区)", "📖 Passed JLPT N4", "👘 Shimo-Kitazawa (下北沢)"],
-            photo: "/assets/images/map/tokyo.jpg",
-            detailedNote: ""
+            photo: "/assets/images/map/matsumoto.jpg",
+            detailedNote: "I’m drawn to the region between Tokyo and Kyoto: the rural landscapes framed by mountains, the shores of Lake Biwa bathed in the colors of forest and sunlight, and the city of Gifu with Nobunaga’s historic castle. After experiencing this, returning to Tokyo no longer holds the same appeal."
         },
         {
             id: "saopaulo",
@@ -119,7 +119,7 @@ class ExpeditionMap {
       this.initializeMap();
       this.createLayers();
       this.addMarkers();
-      this.addLandesMarker();
+      this.addBearnMarker();
       this.addVaudMarker();
       this.addIcons();
       this.addCurvedRoutesAndArrows();
@@ -275,14 +275,14 @@ class ExpeditionMap {
       }
     }
 
-    // Landes marker connected to Bordeaux with a dashed line and no arrow
+    // Béarn marker (Pau) connected to Bordeaux with a dashed line and no arrow
     // Shows up after "Focus Occitanie" zoom
-    addLandesMarker() {
+    addBearnMarker() {
         const bordeauxMarker = this.markers.find(m => m.locationId === 'bordeaux');
         const bordeauxCoords = this.locations.find(l => l.id === 'bordeaux').coordinates;
-        const landesCoords = [44.6167, -0.5333];
+        const bearnCoords = [43.2951, -0.3708]; // Pau, Béarn
 
-        const landesMarker = L.marker(landesCoords, {
+        const bearnMarker = L.marker(bearnCoords, {
             icon: L.divIcon({
                 className: 'expedition-marker',
                 html: `<div style="width:20px;height:20px;background:#96705B;border:4px solid #fff;border-radius:50%;box-shadow:0 0 12px #1a1423c0;"></div>`,
@@ -290,23 +290,20 @@ class ExpeditionMap {
                 iconAnchor: [10, 10]
             }),
             pane: 'markerPane'
-        }).bindPopup('<div class="expedition-popup"><h3 class="popup-title">Landes</h3><p class="popup-description">The pine forests and dunes stretching south of Bordeaux, where summers meant Atlantic waves and the smell of resin in the woods.</p></div>', { className: 'expedition-popup-wrapper' });
-        landesMarker.addTo(this.markersLayer);
+        }).bindPopup('<div class="expedition-popup"><h3 class="popup-title">Béarn</h3><p class="popup-description">Pau, at the foot of the Pyrénées — the view of the snow-capped range from the Boulevard des Pyrénées never gets old.</p></div>', { className: 'expedition-popup-wrapper' });
+        bearnMarker.addTo(this.markersLayer);
 
-        L.polyline([bordeauxCoords, landesCoords], {
+        const connectorLine = L.polyline([bordeauxCoords, bearnCoords], {
             color: "#1A1423",
             weight: 2.5,
             dashArray: "2 10",
             opacity: 0.50
-        }).addTo(this.routeLayer);
+        });
 
         if (!bordeauxMarker) return;
 
-        const midpoint = [
-            (bordeauxCoords[0] + landesCoords[0]) / 2,
-            (bordeauxCoords[1] + landesCoords[1]) / 2
-        ];
-        const mergedMarker = L.marker(midpoint, {
+        const mergedCoords = [44.6167, -0.5333]; // Saucats — sits between Bordeaux and Béarn
+        const mergedMarker = L.marker(mergedCoords, {
             icon: L.divIcon({
                 className: 'expedition-marker',
                 html: `<div style="position:relative;width:20px;height:20px;background:#fff;border-radius:50%;box-shadow:0 0 12px #1a1423c0;">
@@ -317,20 +314,26 @@ class ExpeditionMap {
                 iconAnchor: [10, 10]
             }),
             pane: 'markerPane'
-        }).bindPopup('<div class="expedition-popup"><h3 class="popup-title">Bordeaux & Landes</h3><p class="popup-description">Home turf, from the port city to the pine forests just south of it. Zoom in to tell them apart.</p></div>', { className: 'expedition-popup-wrapper' });
+        }).bindPopup('<div class="expedition-popup"><h3 class="popup-title">Bordeaux & Béarn</h3><p class="popup-description">Home turf, from the port city of Bordeaux to the Pyrénées foothills of Béarn. Zoom in to tell them apart.</p></div>', { className: 'expedition-popup-wrapper' });
 
         const MERGE_BELOW_ZOOM = 7;
         const updateMerge = () => {
             const shouldMerge = this.map.getZoom() < MERGE_BELOW_ZOOM;
             if (shouldMerge) {
                 this.map.removeLayer(bordeauxMarker);
-                this.map.removeLayer(landesMarker);
+                this.map.removeLayer(bearnMarker);
                 if (!this.map.hasLayer(mergedMarker)) mergedMarker.addTo(this.map);
+                if (this.routeLayer.hasLayer(connectorLine)) this.routeLayer.removeLayer(connectorLine);
             } else {
                 this.map.removeLayer(mergedMarker);
                 if (!this.map.hasLayer(bordeauxMarker)) bordeauxMarker.addTo(this.map);
-                if (!this.map.hasLayer(landesMarker)) landesMarker.addTo(this.map);
+                if (!this.map.hasLayer(bearnMarker)) bearnMarker.addTo(this.map);
+                if (!this.routeLayer.hasLayer(connectorLine)) connectorLine.addTo(this.routeLayer);
             }
+            // The Bordeaux→Paris route always starts from whichever point is
+            // currently visible for Bordeaux: the merged blob (at Saucats) when
+            // folded, the real Bordeaux marker once unfolded.
+            this.updateBordeauxParisRoute(shouldMerge ? mergedCoords : bordeauxCoords);
         };
 
         this.map.on('zoomend', updateMerge);
@@ -338,7 +341,7 @@ class ExpeditionMap {
     }
 
     // Vaud marker connected to Geneva with a dashed line and no arrow
-    // Shows up after "Focus Occitanie" zoom, same merge logic as addLandesMarker()
+    // Shows up after "Focus Occitanie" zoom, same merge logic as addBearnMarker()
     addVaudMarker() {
         const genevaMarker = this.markers.find(m => m.locationId === 'geneva');
         const genevaCoords = this.locations.find(l => l.id === 'geneva').coordinates;
@@ -347,7 +350,30 @@ class ExpeditionMap {
         const vaudMarker = L.marker(vaudCoords, {
             icon: L.divIcon({
                 className: 'expedition-marker',
-                html: `<div style="width:20px;height:20px;background:#96705B;border:4px solid #fff;border-radius:50%;box-shadow:0 0 12px #1a1423c0;"></div>`,
+                html: `
+                    <div style="position: relative; width: 20px; height: 20px;">
+                        <div class="marker-pulse" style="
+                            position: absolute;
+                            top: -12%;
+                            left: -12%;
+                            transform: translate(-50%, -50%);
+                            width: 25px;
+                            height: 25px;
+                            background: rgba(98, 71, 171, 0.3);
+                            border-radius: 50%;
+                            z-index: 1;
+                        "></div>
+                        <div style="
+                            width: 20px;
+                            height: 20px;
+                            background: #AB8476;
+                            border: 4px solid #fff;
+                            border-radius: 50%;
+                            box-shadow:0 0 12px #1a1423c0;
+                            cursor: pointer;
+                        "></div>
+                    </div>
+                `,
                 iconSize: [20, 20],
                 iconAnchor: [10, 10]
             }),
@@ -355,12 +381,12 @@ class ExpeditionMap {
         }).bindPopup('<div class="expedition-popup"><h3 class="popup-title">Vaud</h3><p class="popup-description">Along the shores of Lake Léman past Geneva, where the vineyards of Lavaux climb the hillsides and Lausanne\'s old town looks out over the water.</p></div>', { className: 'expedition-popup-wrapper' });
         vaudMarker.addTo(this.markersLayer);
 
-        L.polyline([genevaCoords, vaudCoords], {
+        const connectorLine = L.polyline([genevaCoords, vaudCoords], {
             color: "#1A1423",
             weight: 2.5,
             dashArray: "2 10",
             opacity: 0.50
-        }).addTo(this.routeLayer);
+        });
 
         if (!genevaMarker) return;
 
@@ -371,10 +397,25 @@ class ExpeditionMap {
         const mergedMarker = L.marker(midpoint, {
             icon: L.divIcon({
                 className: 'expedition-marker',
-                html: `<div style="position:relative;width:20px;height:20px;background:#fff;border-radius:50%;box-shadow:0 0 12px #1a1423c0;">
-                    <span style="position:absolute;top:3.5px;left:3.5px;width:7px;height:7px;background:#96705B;border-radius:50%;"></span>
-                    <span style="position:absolute;bottom:3.5px;right:3.5px;width:7px;height:7px;background:#96705B;border-radius:50%;"></span>
-                </div>`,
+                html: `
+                    <div style="position: relative; width: 20px; height: 20px;">
+                        <div class="marker-pulse" style="
+                            position: absolute;
+                            top: -12%;
+                            left: -12%;
+                            transform: translate(-50%, -50%);
+                            width: 25px;
+                            height: 25px;
+                            background: rgba(98, 71, 171, 0.3);
+                            border-radius: 50%;
+                            z-index: 1;
+                        "></div>
+                        <div style="position:relative;width:20px;height:20px;background:#fff;border-radius:50%;box-shadow:0 0 12px #1a1423c0;">
+                            <span style="position:absolute;top:3.5px;left:3.5px;width:7px;height:7px;background:#AB8476;border-radius:50%;"></span>
+                            <span style="position:absolute;bottom:3.5px;right:3.5px;width:7px;height:7px;background:#AB8476;border-radius:50%;"></span>
+                        </div>
+                    </div>
+                `,
                 iconSize: [20, 20],
                 iconAnchor: [10, 10]
             }),
@@ -388,10 +429,12 @@ class ExpeditionMap {
                 this.map.removeLayer(genevaMarker);
                 this.map.removeLayer(vaudMarker);
                 if (!this.map.hasLayer(mergedMarker)) mergedMarker.addTo(this.map);
+                if (this.routeLayer.hasLayer(connectorLine)) this.routeLayer.removeLayer(connectorLine);
             } else {
                 this.map.removeLayer(mergedMarker);
                 if (!this.map.hasLayer(genevaMarker)) genevaMarker.addTo(this.map);
                 if (!this.map.hasLayer(vaudMarker)) vaudMarker.addTo(this.map);
+                if (!this.routeLayer.hasLayer(connectorLine)) connectorLine.addTo(this.routeLayer);
             }
         };
 
@@ -460,6 +503,10 @@ class ExpeditionMap {
         </svg>`;
   
       for (const route of this.routes) {
+        // Bordeaux→Paris is drawn dynamically by updateBordeauxParisRoute() so it
+        // can re-anchor to the Bordeaux & Béarn merged point when folded.
+        if (route.from === "bordeaux" && route.to === "paris") continue;
+
         const start = this.locations.find(l => l.id === route.from).coordinates;
         const end = this.locations.find(l => l.id === route.to).coordinates;
 
@@ -489,8 +536,6 @@ class ExpeditionMap {
           this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.30);
           // Arrow towards "from" (reverse): t = 0.30 on reversed curve (= 0.70 on forward)
           this.drawArrowOnCurve(curvePts.slice().reverse(), plainArrowSvg, 0.30);
-        } else if (route.from === "bordeaux" && route.to === "paris") {
-          this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.50); // exactly at midpoint
         } else if (route.from === "paris" && route.to === "copenhagen") {
           this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.62);
         } else if (route.from === "copenhagen" && route.to === "geneva") {
@@ -500,7 +545,33 @@ class ExpeditionMap {
         }
       }
     }
-  
+
+    // Redraws the Bordeaux→Paris curved route + arrow anchored at bordeauxAnchor,
+    // which is either the real Bordeaux marker or the Bordeaux & Béarn merged
+    // point, depending on the current fold state. Called once at setup and again
+    // every time that fold state changes (see addBearnMarker()).
+    updateBordeauxParisRoute(bordeauxAnchor) {
+        if (this.bordeauxParisLine) this.routeLayer.removeLayer(this.bordeauxParisLine);
+        if (this.bordeauxParisArrow) this.routeLayer.removeLayer(this.bordeauxParisArrow);
+
+        const parisCoords = this.locations.find(l => l.id === 'paris').coordinates;
+        const ctrl = this.computeCurveControlPoint(bordeauxAnchor, parisCoords, 0.19);
+        const curvePts = this.bezierPoints(bordeauxAnchor, ctrl, parisCoords, 40);
+
+        this.bordeauxParisLine = L.polyline(curvePts, {
+            color: "#1A1423",
+            weight: 2.5,
+            dashArray: "2 10",
+            opacity: 0.50
+        }).addTo(this.routeLayer);
+
+        const plainArrowSvg = `
+            <svg width="14" height="14" viewBox="0 0 14 14">
+              <polygon points="3,2 13,8 3,14 7,8" fill="#1A1423"/>
+            </svg>`;
+        this.bordeauxParisArrow = this.drawArrowOnCurve(curvePts, plainArrowSvg, 0.50); // exactly at midpoint
+    }
+
     computeCurveControlPoint(start, end, factor = 0.15) {
       const lat1 = start[0], lng1 = start[1];
       const lat2 = end[0], lng2 = end[1];
@@ -552,7 +623,7 @@ class ExpeditionMap {
         iconSize: [16, 16],
         iconAnchor: [8, 8]
       });
-      L.marker(latlng, { icon, interactive: false, keyboard: false, pane: 'arrowPane' }).addTo(this.routeLayer);
+      return L.marker(latlng, { icon, interactive: false, keyboard: false, pane: 'arrowPane' }).addTo(this.routeLayer);
     }
 
     populateLegend() {
