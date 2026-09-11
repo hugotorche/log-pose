@@ -70,12 +70,12 @@ class ExpeditionMap {
             name: "São Paulo, Brazil",
             coordinates: [-23.533773, -46.625290],
             status: "completed",
-            description: "Navigating to Brazil and São Paulo for a 3 months professional mission for L'Occitane en Provence and L'Occitane au Brésil. Very excited to see the local team and products and to help them migrating from Alteryx to Dbt.",
+            description: "Navigating to Brazil and São Paulo for a three-month professional mission for L’Occitane en Provence and L’Occitane au Brésil. Everything here is about expression, the nature is luxurious and the people are kind-hearted. This place gives me the desire to live more.",
             startDate: "2026-05-01",
             endDate: "2026-08-31",
-            highlights: [ "❣️ Place 1", "🍃 Place 2", "♟️ Place 3", "🎾 Playing Tennis in "],
-            photo: "/assets/images/map/saopaulo.jpg",
-            detailedNote: ""
+            highlights: [ "❣️ Paróquia Nossa Senhora do Brasil", "👷 Vila Cruzeiro", "👘 Avenida Paulista", "🎾 Playing Tennis at Parque Ibirapuera"],
+            photo: "/assets/images/map/rioipanema.jpg",
+            detailedNote: "During my stay, I had the chance to spend two long weekends in Rio de Janeiro. It is one of the most beautiful places I have ever seen. I felt an incredible sense of peace and alignment there. I enjoyed everything, from the astonishing nature to the local flea markets (feiras)."
         }
       ];
       this.routes = [
@@ -204,15 +204,15 @@ class ExpeditionMap {
         const noteHTML = location.detailedNote
             ? `
                 <div class="popup-highlights">
-                    <h4>📝 Log Entry</h4>
+                    <h4>📝 Discovery</h4>
                     <p class="popup-description">${location.detailedNote}</p>
                 </div>`
             : '';
 
         return `
-            ${photoHTML}
             ${this.createLocationDetailsHTML(location)}
             ${noteHTML}
+            ${photoHTML}
         `;
     }
   
