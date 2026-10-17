@@ -685,7 +685,7 @@ class ExpeditionMap {
         const compassDiv = document.createElement('div');
         compassDiv.className = 'map-control-btn compass-rose';
         compassDiv.innerHTML = '<span class="control-emoji compass-emoji">🌍</span>';
-        compassDiv.title = 'Reset View (Press R)';
+        compassDiv.title = 'Focus on World (Press R)';
         compassDiv.onclick = () => this.resetMapView();
         mapContainer.appendChild(compassDiv);
     }
