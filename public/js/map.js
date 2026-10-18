@@ -38,8 +38,8 @@ class ExpeditionMap {
             startDate: "2021-09-01",
             endDate: "2021-12-31",
             highlights: [ "❣️ Frederiksberg & Nørrebro", "🎢 Tivoli Gardens", "🏃 Copenhagen Half Marathon 2021", "📖 Maximum grade on all CBS courses"],
-            photo: "/assets/images/map/copenhagen.jpg",
-            detailedNote: ""
+            photo: "/assets/images/map/lapland.jpg",
+            detailedNote: "During the semester we took a trip to Lapland with fiends from the dorm. This travel was unbelievable from beginning to end. It came the time when we saw the Auroras, this time they were highly visible, unlike the previous night. Everybody was screaming, we were full of happiness."
         },
         {
             id: "geneva",
