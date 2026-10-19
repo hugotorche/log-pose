@@ -26,8 +26,8 @@ class ExpeditionMap {
             startDate: "2020-07-01",
             endDate: "2020-12-31",
             highlights: ["❣️ Place de la Madeleine / Les Madeleines", "🏃 Sine Qua Non Run", "📖 IBM Data Science Coursera Certificate"],
-            photo: "/assets/images/map/paris.jpg",
-            detailedNote: ""
+            photo: "/assets/images/map/chanel.jpg",
+            detailedNote: "We had the opportunity to visit Chanel’s flagship store with the other interns. Located just next to our office in Madeleine, the visit was very interesting and gave us a closer look at the brand’s universe. It was a great reminder of why Paris is a reference for women’s fashion."
         },
         {
             id: "copenhagen",
